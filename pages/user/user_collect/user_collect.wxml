@@ -1,0 +1,4 @@
+<!--pages/publish/publish.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true"><view slot="backText">返回</view><view slot="content">商品发布</view></cu-custom>
+<text>pages/publish/publish.wxml</text>
+

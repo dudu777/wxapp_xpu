@@ -1,0 +1,14 @@
+/**index.wxss**/
+
+.tabbar-bottom {
+ display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0rpx;
+}
+
+.cu-tag.badge:not([class*="bg-"]) {
+  background-color: white;
+}
+

@@ -1,0 +1,24 @@
+
+
+<!-- 组件显示 -->
+<view hidden="{{currentTab == 0? false: true}}">
+  <component_goods/>
+</view>
+<view hidden="{{currentTab == 1? false: true}}">
+  <component_my/>
+</view>
+<view class="cu-bar tabbar margin-bottom-xl bg-white tabbar-bottom ">
+  <view class="action {{currentTab == 0?'text-blue':'text-gray'}}" data-current="0" bindtap="swichNav">
+    <view class="cuIcon-home" data-current="0"></view>首页
+  </view>
+  <view class="action add-action text-blue" style='width:200rpx'  data-current="2" bindtap="swichNav">
+    <button class="cu-btn cuIcon-add bg-gradual-blue shandow"  ></button>
+    发布
+  </view>
+  <view class="action {{currentTab == 1?'text-blue':'text-gray'}}" data-current="1" bindtap="swichNav">
+    <view class="cuIcon-my" data-current="1">
+      <view class="cu-tag  badge"></view>
+    </view>
+    我的
+  </view>
+</view>

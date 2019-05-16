@@ -1,0 +1,31 @@
+<!--pages/user/user_auth/user_auth.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">学生认证</view>
+</cu-custom>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue "></text> 一卡通认证
+  </view>
+</view>
+<view class="padding bg-white">
+  <view class="text-left padding-lr-sm padding-bottom-xs">温馨提示1：请确保卡片信息，字迹清晰。</view>
+  <view class="text-left padding-lr-sm padding-bottom-xs">温馨提示2：拍摄时，请参考实例附图。</view>
+</view>
+<view class="  flex justify-center " bindtap="ChooseImage">
+  <image class='' src='{{imgUrl}}' mode="aspectFit" style='width:200rpx;height:240rpx'></image>
+</view>
+
+<view class='padding-xl'>
+<button class="cu-btn block bg-blue margin-tb-sm df" bindtap='navToForm'>
+    下一步<text class="cuIcon-pullright margin-left"></text> </button>
+</view>
+
+
+
+
+
+
+
+

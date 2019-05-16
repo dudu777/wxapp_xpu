@@ -1,0 +1,73 @@
+<!--pages/publish/publish.wxml-->
+<cu-custom bgColor="bg-white" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">搜索</view>
+</cu-custom>
+<view class="cu-bar   " style='background-color:#fff'>
+  <view class="search-form radius solid-bottom" style='background-color:#fff'>
+    <text class="cuIcon-search " style='background-color:#fff'></text>
+    <input type="text" placeholder="搜索图片、文章、视频" style='background-color:#fff;'></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn round line-blue shadow-blur round">搜索</button>
+  </view>
+
+</view>
+
+<view class="cu-bar bg-white  solid-bottom">
+  <view class="action">
+    历史搜索
+  </view>
+</view>
+<view class="padding bg-white">
+  <view class="">
+    <button class=" cu-btn round line-grey margin-xs}}">搜索</button>
+    <button class="cu-btn round line-grey margin-xs}}">搜索历史1</button>
+    <button class="cu-btn round line-grey margin-xs}}">搜索历史2</button>
+    <button class=" cu-btn round line-grey margin-xs}}">历史1</button>
+    <button class=" cu-btn round line-grey margin-xs}}">搜索历史2</button>
+  </view>
+
+</view>
+
+
+<view class="cu-bar bg-white margin-top solid-bottom ">
+  <view class="action ">
+    热门搜素
+  </view>
+
+</view>
+
+
+<view class="padding bg-white">
+  <view class="flex">
+    <view class="flex-sub  padding-lr-sm solid-right ">
+      <view class="content">
+        <text class="cuIcon-hotfill text-red"></text>
+        <text class="text-grey padding-left-xs ">热门搜索1</text>
+      </view>
+    </view>
+    <view class="flex-sub padding-lr-sm ">
+      <view class="content">
+        <text class="cuIcon-hotfill text-orange"></text>
+        <text class="text-grey padding-left-xs">热门搜索2</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="padding bg-white">
+  <view class="flex">
+    <view class="flex-sub  padding-lr-sm solid-right ">
+      <view class="content">
+        <text class="cuIcon-hotfill text-red"></text>
+        <text class="text-grey padding-left-xs">热门搜索1</text>
+      </view>
+    </view>
+    <view class="flex-sub padding-lr-sm ">
+      <view class="content">
+        <text class="cuIcon-hotfill text-orange"></text>
+        <text class="text-grey padding-left-xs">热门搜索2</text>
+      </view>
+    </view>
+  </view>
+</view>
