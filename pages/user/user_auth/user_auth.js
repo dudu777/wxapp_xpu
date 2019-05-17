@@ -1,58 +1,14 @@
 // pages/user/user_auth/user_auth.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    multiArray: [
-      ['无脊柱动物', '脊柱动物'],
-      ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'],
-      ['猪肉绦虫', '吸血虫']
-    ],
-    objectMultiArray: [
-      [{
-        id: 0,
-        name: '无脊柱动物'
-      },
-      {
-        id: 1,
-        name: '脊柱动物'
-      }
-      ],
-      [{
-        id: 0,
-        name: '扁性动物'
-      },
-      {
-        id: 1,
-        name: '线形动物'
-      },
-      {
-        id: 2,
-        name: '环节动物'
-      },
-      {
-        id: 3,
-        name: '软体动物'
-      },
-      {
-        id: 3,
-        name: '节肢动物'
-      }
-      ],
-      [{
-        id: 0,
-        name: '猪肉绦虫'
-      },
-      {
-        id: 1,
-        name: '吸血虫'
-      }
-      ]
-    ],
-    multiIndex: [0, 0, 0],
+   
     imgUrl: '/images/imgAdd.png',
+    test:''
 
   },
 
@@ -61,6 +17,20 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  /**
+    *
+    * json转字符串
+    */
+   stringToJson(data){
+    return JSON.parse(data);
+  },
+  /**
+  *字符串转json
+  */
+  jsonToString(data) {
+    return JSON.stringify(data);
   },
   navToForm() {
 wx.navigateTo({
@@ -78,6 +48,29 @@ wx.navigateTo({
           this.setData({
             imgUrl: res.tempFilePaths
           })
+        console.log(app.globalData.userKey.access_token)
+        wx.uploadFile({
+          url: 'http://localhost:5000/upload', // 仅为示例，非真实的接口地址
+          filePath: res.tempFilePaths[0],
+          name: 'file',
+          formData: {
+            user: 'test'
+          },
+          method:'POST',
+          header:{
+            "Content-Type":'application/json',
+            "Authorization": "Bearer" + app.globalData.userKey.access_token
+          },
+          success: (res) =>  {
+            console.log(res)
+            let data = res.data.replace(/ /g,"")
+            data = JSON.parse(data)
+            console.log(data)
+            this.setData({
+              test: data.url
+            })
+          }
+        })
       }
     });
   },
