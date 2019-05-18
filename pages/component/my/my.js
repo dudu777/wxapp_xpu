@@ -1,5 +1,5 @@
 var app = getApp();
-
+var base = require("../../../utils/base.js")
 Component({
 
   /* 开启全局样式设置 */
@@ -28,7 +28,8 @@ Component({
   },
 
   /* 组件声明周期函数 */
-  lifetimes: {
+  lifetimes:{
+    
     attached: function () {
       if (app.globalData.userInfo) {
         this.setData({
@@ -76,20 +77,21 @@ Component({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
       })
-      wx.request({
-        url: 'http://localhost:5000/login',
-        data: {
-          nickname: this.data.userInfo.nickName,
-          avatarurl: this.data.userInfo.avatarUrl,
-         openid: app.globalData.userKey.openid,
-          gender:this.data.userInfo.gender,
-          auth:0
-        },
-        method:'POST',
-        success: res => {
-          console.log(res)
-        }
+      base.postRq('/login', {
+        // nickname: this.data.userInfo.nickName,
+        // avatarurl: this.data.userInfo.avatarUrl,
+        // openid: app.globalData.userKey.openid,
+        // gender:this.data.userInfo.gender,
+        // auth:0
+        nickname: 'test3',
+        avatarurl: 'test3',
+        openid: 'test3',
+        gender: 'test3',
+        auth: 0
+      }).then(function (res) {
+        console.log('登录',res)
       })
+    
     }
   }
 

@@ -36,7 +36,6 @@ App({
     wx.request({
       url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6dcff2f0f1a73aeb&secret=d0347ee63b4454fa34d3b38b667c3e5f',
       success: res => {
-        console.log(res)
         this.globalData.userKey.access_token = res.data.access_token
       }
     })

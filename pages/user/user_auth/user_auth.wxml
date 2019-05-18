@@ -24,7 +24,7 @@
 
 
 
-<image src='{{test}}'></image>
+<image src='{{test}}' style='width:200px;height:200px'></image>
 
 
 

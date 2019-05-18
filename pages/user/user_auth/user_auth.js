@@ -1,4 +1,5 @@
 // pages/user/user_auth/user_auth.js
+
 var app = getApp();
 Page({
 
@@ -16,6 +17,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // wx.request({
+    //   url: 'http://localhost:5000/user/login',
+    //   data:{
+    //     username:'1',
+    //     password:'2',
+
+    //   },
+    //   method:'POST',
+    //   success: res => {
+    //     console.log(res)
+    //     const _token = res.data.data
+    //     wx.setStorageSync('_token', _token)
+    //   }
+    // })
+    var base = require("../../../utils/base.js")
+    console.log(base)
+    base.postRq('user/list', {
+        username: '1',
+        password: '2'
+    }).then(function(res){
+      console.log(res)
+    })
+    
+    // wx.request({
+    //   url: 'http://localhost:5000/user/list',
+    //   data: {
+    //     username: '1',
+    //     password: '2',
+
+    //   },
+    //   method: 'POST',
+    //   header:{
+    //     'Authorization': 'Bearer '+ '7899999998'
+    //   },
+    //   success: res => {
+    //     console.log(res)
+    //     const _token = res.data.data
+    //     wx.setStorageSync('_token', _token)
+    //   }
+    // })
 
   },
 
@@ -54,13 +95,9 @@ wx.navigateTo({
           filePath: res.tempFilePaths[0],
           name: 'file',
           formData: {
-            user: 'test'
+            user: 'dudu'
           },
           method:'POST',
-          header:{
-            "Content-Type":'application/json',
-            "Authorization": "Bearer" + app.globalData.userKey.access_token
-          },
           success: (res) =>  {
             console.log(res)
             let data = res.data.replace(/ /g,"")
