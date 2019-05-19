@@ -31,6 +31,21 @@ Component({
   lifetimes:{
     
     attached: function () {
+      //验证接口 通过
+      // base.postRq('/login', {
+      //   // nickname: this.data.userInfo.nickName,
+      //   // avatarurl: this.data.userInfo.avatarUrl,
+      //   // openid: app.globalData.userKey.openid,
+      //   // gender:this.data.userInfo.gender,
+      //   // auth:0
+      //   nickName: 'test8',
+      //  avatarUrl: 'test8',
+      //   openID: 'test8',
+      //   gender: 'test8',
+      //   auth: 0
+      // }).then(function (res) {
+      //   console.log('登录', res)
+      // })
       if (app.globalData.userInfo) {
         this.setData({
           userInfo: app.globalData.userInfo,

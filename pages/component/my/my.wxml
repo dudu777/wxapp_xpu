@@ -48,6 +48,12 @@
         <text class="text-grey">我的收藏</text>
       </navigator>
     </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/user/user_contact/user_contact" hover-class="none">
+        <text class="cuIcon-phone text-yellow"></text>
+        <text class="text-grey">我的联系方式</text>
+      </navigator>
+    </view>
 
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/user/user_about/user_about" hover-class="none">

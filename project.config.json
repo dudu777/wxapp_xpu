@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -74,6 +74,27 @@
 					"id": -1,
 					"name": "学生认证",
 					"pathName": "pages/user/user_auth/user_auth",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "认证提交",
+					"pathName": "pages/user/user_auth/form/form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择联系方式",
+					"pathName": "pages/goods/publish/ch_contact/ch_contact",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加联系方式",
+					"pathName": "pages/user/user_contact/add_contact/add_add_contact",
 					"query": "",
 					"scene": null
 				}

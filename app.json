@@ -2,11 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/goods/publish/publish",
+    "pages/goods/publish/ch_contact/ch_contact",
     "pages/component/my/my",
     "pages/goods/good_detail/good_detail",
     "pages/goods/search/search",
     "pages/user/user_auth/user_auth",
     "pages/user/user_auth/form/form",
+    "pages/user/user_contact/user_contact",
+    "pages/user/user_contact/add_contact/add_add_contact",
     "pages/user/user_about/user_about"
   ],
   "window": {

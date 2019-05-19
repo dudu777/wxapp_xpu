@@ -1,10 +1,12 @@
 // pages/publish/publish.js
+var base = require("../../../utils/base.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    key:''
 
   },
 
@@ -12,6 +14,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  },
+  inputBlur: function(e){
+    console.log(e)
+    this.setData({
+      key: e.detail.value
+    })
+
+  },
+  search: function(e){
+
+    base.getRq('/search', {
+     key :this.data.key,
+    }).then(function (res) {
+      console.log('搜索', res)
+      
+    })
 
   },
 

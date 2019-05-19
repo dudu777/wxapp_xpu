@@ -1,89 +1,88 @@
 <!--pages/publish/publish.wxml-->
-<cu-custom bgColor="bg-gradual-blue" isBack="true"><view slot="backText">返回</view><view slot="content">商品发布</view></cu-custom>
-<form>
-	<view class="cu-form-group margin-top">
-		<view class="title">标题</view>
-		<input placeholder="请填写商品标题"></input>
-	</view>
-  
-	
-<view class="cu-bar bg-white margin-top">
-		<view class="action">
-			图片上传
-		</view>
-		<view class="action">
-			{{imgList.length}}/4
-		</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="grid col-4 grid-square flex-sub">
-			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-				<image src='{{imgList[index]}}' mode='aspectFill'></image>
-				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-					<text class="cuIcon-close"></text>
-				</view>
-			</view>
-			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
-				<text class="cuIcon-cameraadd"></text>
-			</view>
-		</view>
-	</view>
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">商品发布</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+  <view class="cu-form-group margin-top">
+    <view class="title">标题</view>
+    <input placeholder="请填写商品标题" name="title"></input>
+  </view>
 
-  	<view class="cu-form-group margin-top">
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="请输入商品描述信息"></textarea>
-	</view>
-	<view class="cu-form-group margin-top">
-		<view class="title">类别</view>
-		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-			<view class="picker">
-				{{index?picker[index]:'请选择商品类别'}}
-			</view>
-		</picker>
-	</view>
-	
-	<view class="cu-form-group margin-top">
-		<view class="title">是否为全新</view>
-		<switch></switch>
-	</view>
-  <view class="cu-form-group margin-top">
-		<view class="title">买入价格</view>
-		<input placeholder="请输入商品出售价格" class='text-red'></input>
-		<text class=" text-red">元</text>
-	</view>
-  <view class="cu-form-group margin-top">
-		<view class="title">出售价格</view>
-		<input placeholder="请输入商品出售价格" class='text-red'></input>
-		<text class="text-red">元</text>
-	</view>
-  <view class="cu-form-group ">
-		<view class="title">是否接受讲价</view>
-		<switch></switch>
-	</view>
-  <view class="cu-form-group margin-top">
-		<view class="title">请选择联系方式</view>
-	</view>
-	<view class="cu-form-group">
-		<view class="title text-grey">手机<text class=" text-lg padding ">1234567899</text></view>
-		<checkbox class="round blue" checked></checkbox>
-	</view>
-	<view class="cu-form-group">
-		<view class="title text-grey">微信<text class="text-lg padding ">123456789</text></view>
-		<checkbox class="round blue" checked></checkbox>
-	</view>
+
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      图片上传
+    </view>
+    <view class="action">
+      {{imgList.length}}/4
+    </view>
+  </view>
   <view class="cu-form-group">
-		<view class="title text-grey">QQ<text class=" text-lg padding ">123456789</text></view>
-		<checkbox class="round blue" checked></checkbox>
-	</view>
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+<view class="cu-form-group align-start margin-top">
+    <view class="title">商品描述</view>
+    <textarea maxlength="-1" name="description" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="请输入商品描述信息"></textarea>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">类别</view>
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}" name="type">
+      <view class="picker">
+        {{index?picker[index]:'请选择商品类别'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">是否为全新</view>
+    <switch name="isNew"></switch>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">买入价格</view>
+    <input placeholder="请输入商品出售价格" class='text-red' name="buyPrice"></input>
+    <text class=" text-red">元</text>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">出售价格</view>
+    <input placeholder="请输入商品出售价格" class='text-red' name="cellPrice"></input>
+    <text class="text-red">元</text>
+  </view>
   <view class="cu-form-group ">
-		<view class="title">是否设为校友可见</view>
-		<switch></switch>
-	</view>
-  <view class="padding flex flex-direction">
-  <button class="cu-btn round bg-grey " style='margin:20rpx auto;'>保存草稿</button>
-  <button class="cu-btn round bg-blue " style='margin:20rpx auto;'>发布</button>
-</view>
+    <view class="title">是否接受讲价</view>
+    <switch name="isBargain"></switch>
+  </view>
+  <view class="cu-form-group align-start margin-top">
+    <view class="title">交易地址</view>
+    <textarea maxlength="-1" name="address" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="选填（如：中心广场大屏幕下）"></textarea>
+  </view>
+  <view class="cu-form-group t" bindtap='navToCantact'>
+    <view class="title">联系方式
+      <text class='padding' value="{{cur_type}}">{{con_type?con_type+'    '+con_num:'选择联系方式'}}</text>
+    </view>
+    <!-- <input placeholder="请选择联系方式" value="" name="contsct" disabled="true"></input> -->
+
+    <text class=" cuIcon-right text-grey"></text>
+  </view>
+  <view class="cu-form-group margin-top ">
+    <view class="title">是否设为校友可见</view>
+    <switch name="isWatch"></switch>
+  </view>
+  <view class="padding flex justify-center">
+   
+    <button class="cu-btn round bg-blue  margin-sm" style='width:300rpx'   form-type="submit">发布</button>
+  </view>
 
 </form>
-
-
-

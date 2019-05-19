@@ -30,6 +30,14 @@ Component({
   /* 组件声明周期函数 */
   lifetimes: {
     attached: function () {
+      var base = require("../../../utils/base.js")
+      base.getRq('/goods_list', {}).then(function (res) {
+        console.log('商品列表',res)
+      })
+      base.getRq('/goods_list1', { type:'生活'}).then(function (res) {
+        console.log('列表1', res)
+      })
+
    
     },
     moved: function () { 

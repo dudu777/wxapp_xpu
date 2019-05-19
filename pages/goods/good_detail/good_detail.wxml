@@ -35,7 +35,7 @@
      <view class="action text-green">
       <view class=" cuIcon-weixin"></view> 分享
     </view>
-    <view class="action text-cyan">
+    <view class="action text-red">
       <view class=" cuIcon-picfill"></view> 生成图片
     </view>
     <view class="action text-yellow">

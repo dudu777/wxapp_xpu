@@ -6,39 +6,28 @@
 <view class="cu-bar   " style='background-color:#fff'>
   <view class="search-form radius solid-bottom" style='background-color:#fff'>
     <text class="cuIcon-search " style='background-color:#fff'></text>
-    <input type="text" placeholder="搜索图片、文章、视频" style='background-color:#fff;'></input>
+    <input type="text" placeholder="搜索图片、文章、视频" style='background-color:#fff;' bindblur='inputBlur'></input>
   </view>
   <view class="action">
-    <button class="cu-btn round line-blue shadow-blur round">搜索</button>
+    <button class="cu-btn round line-blue shadow-blur round" bindtap='search'>搜索</button>
   </view>
 
 </view>
-
-<view class="cu-bar bg-white  solid-bottom">
-  <view class="action">
-    历史搜索
-  </view>
-</view>
-<view class="padding bg-white">
-  <view class="">
-    <button class=" cu-btn round line-grey margin-xs}}">搜索</button>
-    <button class="cu-btn round line-grey margin-xs}}">搜索历史1</button>
-    <button class="cu-btn round line-grey margin-xs}}">搜索历史2</button>
-    <button class=" cu-btn round line-grey margin-xs}}">历史1</button>
-    <button class=" cu-btn round line-grey margin-xs}}">搜索历史2</button>
+<view class="cu-bar bg-white margin-top solid-bottom ">
+  <view class="action ">
+    搜素结果
   </view>
 
 </view>
 
 
+<view hidden="true">
 <view class="cu-bar bg-white margin-top solid-bottom ">
   <view class="action ">
     热门搜素
   </view>
 
 </view>
-
-
 <view class="padding bg-white">
   <view class="flex">
     <view class="flex-sub  padding-lr-sm solid-right ">
@@ -71,3 +60,26 @@
     </view>
   </view>
 </view>
+
+
+
+<view class="cu-bar bg-white  solid-bottom margin-top">
+  <view class="action">
+    历史搜索
+  </view>
+  </view>
+<view class="padding bg-white ">
+  <view class="">
+    <button class=" cu-btn round line-grey margin-xs}}">搜索</button>
+    <button class="cu-btn round line-grey margin-xs}}">搜索历史1</button>
+    <button class="cu-btn round line-grey margin-xs}}">搜索历史2</button>
+    <button class=" cu-btn round line-grey margin-xs}}">历史1</button>
+    <button class=" cu-btn round line-grey margin-xs}}">搜索历史2</button>
+  </view>
+
+</view>
+</view>
+
+
+
+

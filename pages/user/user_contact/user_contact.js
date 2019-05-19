@@ -1,6 +1,4 @@
-// pages/user/user_auth/form/form.js
-var app = getApp();
-
+// pages/user/user_contact/user_contact.js
 Page({
 
   /**
@@ -14,34 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var base = require("../../../../utils/base.js")
-    base.postRq('/auth', {
-      openID: '999',
-      name: '杜萍萍',
-      stuID: '41603030130',
-      academy: '电信',
-      stuClass: '通1',
-
-      date:new Date()
-    }).then(function (res) {
-      console.log(res)
-    })
 
   },
-  submit(){
-    var base = require("../../../../utils/base.js")
-    base.postRq('/auth', {
-      openid: '7777',
-      name: '杜萍萍',
-      stuID: '41603030130',
-      academy: '电信',
-      stuClass: '通1'
-    }).then(function (res) {
-      console.log(res)
-    })
 
-
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

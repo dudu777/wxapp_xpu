@@ -1,0 +1,4 @@
+/* template/list/list.wxss */
+page{
+  padding-bottom: 100rpx
+}

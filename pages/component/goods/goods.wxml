@@ -10,45 +10,16 @@
   </view>
 </scroll-view>
 
+<import src="../../../template/list.wxml" />
 
-<view class="flex" style='margin:30rpx 0rpx 30rpx 30rpx'>
-  <view class="bg-white flex-sub margin-right radius shadow-lg" bindtap='nav_detail'>
-    <view class="cu-card case {{isCard?'no-card':''}}">
-      <view class="cu-item shadow">
-        <view class="image">
-          <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
-          <view class="cu-tag bg-blue">史诗</view>
-        </view>
-        <view class="cu-bar" style='margin:0rpx 15rpx;'>
-          <text class="text-cut">我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。</text>
-        </view>
-
-        <view class="cu-bar margin-lr-sm" style='color:red;min-height:80rpx;'>￥
-          <text style="font-size:32rpx">220元</text><text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">500元</text>
-        </view>
-        
-          
-       
-      </view>
-    </view>
-  </view>
-
-  <view class="bg-white flex-sub margin-right radius shadow-lg">
-    <view class="cu-card case {{isCard?'no-card':''}}">
-      <view class="cu-item shadow">
-        <view class="image">
-          <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>
-          <view class="cu-tag bg-blue">史诗</view>
-        </view>
-        <view class="cu-bar">
-          <text class="text-cut" style='margin:0rpx 15rpx;'>我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。</text>
-        </view>
-        <view class="cu-bar margin-lr-sm" style='color:red;'>￥
-          <text style="font-size:32rpx">￥220元</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
-
+<view class="grid" >
+<template is="goodsList">
+</template>
+<template is="goodsList">
+</template>
+<template is="goodsList">
+</template>
+<template is="goodsList">
+</template>
 </view>
+
