@@ -1,7 +1,7 @@
 .UCenter-bg {
   
   background-size: cover;
-  height: 550rpx;
+  height: 480rpx;
   display: flex;
   justify-content: center;
   overflow: hidden;

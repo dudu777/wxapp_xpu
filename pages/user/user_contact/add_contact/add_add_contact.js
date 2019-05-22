@@ -1,4 +1,5 @@
 // pages/user/user_contact/add_contact/add_add_contact.js
+var app = getApp()
 var base = require("../../../../utils/base.js")
 Page({
 
@@ -41,11 +42,13 @@ Page({
   addContact(){
     //请求联系方式添加
     base.postRq('/addContactById', {
-      openID: '123',
+      openID: app.globalData.userKey.openid,
       con_type:this.data.con_type,
       con_num:this.data.con_num
     }).then(function (res) {
-      console.log('地址', res)
+      wx.navigateBack({
+        
+      })
     })
    
 

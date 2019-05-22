@@ -1,6 +1,6 @@
 /* pages/publish/publish.wxss */
 page{
-  padding-bottom: 50rpx
+  padding-bottom: 130rpx
 }
 .tip-bottom {
  display: flex;

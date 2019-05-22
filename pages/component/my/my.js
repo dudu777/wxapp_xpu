@@ -11,7 +11,8 @@ Component({
   properties: {
     name: {
       type: String,
-      value: 'My'
+      value: 'My',
+
     }
   },
 
@@ -19,7 +20,7 @@ Component({
   data: {
     starCount: 0,
     forksCount: 0,
-    visitTotal: 0,
+    publishTotal: 0,
     auth:'',
     userInfo: {},
     hasUserInfo: false,
@@ -31,6 +32,16 @@ Component({
   lifetimes:{
     
     attached: function () {
+      console.log('attache')
+      var that = this
+      base.postRq('/getPublishById', { openID: '123' }).then(function (res) {
+       
+        that.setData({
+          publishTotal: res.data.data.length
+        })
+      })
+      
+    
       //验证接口 通过
       // base.postRq('/login', {
       //   // nickname: this.data.userInfo.nickName,
@@ -47,15 +58,15 @@ Component({
       //   console.log('登录', res)
       // })
       if (app.globalData.userInfo) {
-        this.setData({
+        that.setData({
           userInfo: app.globalData.userInfo,
           hasUserInfo: true
         })
-      } else if (this.data.canIUse) {
+      } else if (that.data.canIUse) {
         // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
         // 所以此处加入 callback 以防止这种情况
         app.userInfoReadyCallback = res => {
-          this.setData({
+          that.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
@@ -66,21 +77,23 @@ Component({
           success: res => {
             console.log(res.userInfo)
             app.globalData.userInfo = res.userInfo
-            this.setData({
+            that.setData({
               userInfo: res.userInfo,
               hasUserInfo: true
             })
+            
           }
         })
       }
+      
 
 
     },
     moved: function () {
-
+      console.log('moved')
     },
     detached: function () {
-
+      console.log('datached')
     },
   },
 
@@ -89,6 +102,7 @@ Component({
     getUserInfo: function (e) {
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
+       
         userInfo: e.detail.userInfo,
         hasUserInfo: true
       })
@@ -98,10 +112,10 @@ Component({
         // openid: app.globalData.userKey.openid,
         // gender:this.data.userInfo.gender,
         // auth:0
-        nickname: 'test3',
-        avatarurl: 'test3',
-        openid: 'test3',
-        gender: 'test3',
+        nickName: app.globalData.userInfo.nickname,
+        avatarUrl: app.globalData.avatarurl,
+        openID: app.globalData.userKey.openid,
+        gender: app.globalData.gender,
         auth: 0
       }).then(function (res) {
         console.log('登录',res)

@@ -1,5 +1,5 @@
-let app = getApp()
 
+let app = getApp()
 Page({
   data: {
     currentTab: 0,
@@ -9,8 +9,7 @@ Page({
     let that = this;
     if (e.currentTarget.dataset.current==2){
       wx.navigateTo({
-        url: '/pages/goods/publish/publish',
-        
+        url: '/pages/goods/publish/publish'       
       })
 
     }else{
@@ -24,6 +23,8 @@ Page({
     }
   },
   onLoad: function (option) {
-
+    
+  },
+  onshow: function(){
   }
 })

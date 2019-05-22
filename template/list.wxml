@@ -1,24 +1,23 @@
 <!--template/list/list.wxml-->
 <template name="goodsList">
-  
-    <view class="bg-white margin-right radius  " style='margin:30rpx 0rpx 30rpx 30rpx; width:335rpx;height:450rpx' bindtap='nav_detail'>
-     <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill" style='height:280rpx'></image>
-     <view class="cu-bar" style='margin:0rpx 15rpx;height:25rpx'>
-          <text class="text-cut">我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。</text>
-        </view>
+  <view style="display:inline-block">
+    <view class="bg-white margin-right radius  " style='margin:30rpx 0rpx 30rpx 30rpx; width:335rpx;height:450rpx' bindtap='nav_detail' data-list='{{item}}'>
+      <image src="{{item.coverImg}}" mode="aspectFill" style='height:280rpx'></image>
+      <view class="cu-bar" style='margin:0rpx 15rpx;height:25rpx'>
+        <text class="text-cut">{{item.title}}{{item.img.split(',')[0]}}</text>
+      </view>
 
-        <view class=" margin-lr-sm" style='color:red;'>￥
-          <text style="font-size:32rpx">220元</text><text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">500元</text>
-        </view>
-
-
-
-
+      <view class=" margin-lr-sm" style='color:red; padding-bottom:12rpx;'>￥
+        <text style="font-size:32rpx">{{item.buyPrice}}元</text>
+        <text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">{{item.cellPrice}}元</text>
+      </view>
+      <view hidden='{{!isUserPublish}}'  class='cu-ba text-center padding-xs bg-red ' catchtap='cancelPublish' data-goodID="{{item.goodID}}">将此下架</view>
 
 
 
-
-
-      
+    </view>
   </view>
+</template>
+
+<template is="goodsList" data="{{item,isUserPublish}}">
 </template>

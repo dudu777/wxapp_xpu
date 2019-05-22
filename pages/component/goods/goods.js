@@ -1,5 +1,5 @@
 var app = getApp();
-
+var base = require("../../../utils/base.js")
 Component({
   
   /* 开启全局样式设置 */
@@ -17,27 +17,38 @@ Component({
 
   /* 组件的初始数据 */
   data: {
-    tabList:[
-      '最新发布','图书','生活小物'
-    ],
-      
-    
+    tabList:[],
+    goodsList:[],
+    isUserPublish:false,
+    type:'图书',
     TabCur: 0,
     scrollLeft: 0
   },
   
-
   /* 组件声明周期函数 */
   lifetimes: {
-    attached: function () {
-      var base = require("../../../utils/base.js")
-      base.getRq('/goods_list', {}).then(function (res) {
-        console.log('商品列表',res)
+    attached: function (e) {
+     var that = this
+      base.getRq('/getTaglist').then(function (res) {
+        that.setData({
+          tabList: res.data.data
+        })
+        base.getRq('/getGoodsBytype', {
+          type: that.data.type,
+        }).then(function (res) {
+          if (res.data.data.length == 0) {
+            console.log('无返回数据')
+            that.setData({
+              goodsList: null
+            })
+          } else {
+            that.setData({
+              goodsList: res.data.data,
+            })
+            console.log('/getGoodsBytype商品列表', res.data.data)
+          }
+        })
       })
-      base.getRq('/goods_list1', { type:'生活'}).then(function (res) {
-        console.log('列表1', res)
-      })
-
    
     },
     moved: function () { 
@@ -52,17 +63,34 @@ Component({
   methods: {
     
     tabSelect(e) {
-      this.setData({
-        TabCur: e.currentTarget.dataset.id,
+      var that = this
+      that.setData({
+        TabCur: e.currentTarget.dataset.typeobj.id,
+        type: e.currentTarget.dataset.typeobj.type,
         scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      })
+      base.getRq('/getGoodsBytype', {
+        type:that.data.type,
+      }).then(function (res) {
+        if (res.data.data.length ==0) {
+          console.log('无返回数据')
+          that.setData({
+            goodsList: null
+          })
+        } else {
+          console.log('/getGoodsBytype商品列表', res.data.data)
+          that.setData({
+          goodsList: res.data.data   
+         })
+        }
       })
     },
     nav_detail(e){
+      let data = JSON.stringify(e.currentTarget.dataset.list)
       wx.navigateTo({
-        url: '/pages/goods/good_detail/good_detail',
+        url: '/pages/goods/good_detail/good_detail?data='+data,
       })
     }
-
   }
   
 })

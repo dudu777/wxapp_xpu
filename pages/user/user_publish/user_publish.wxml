@@ -1,0 +1,10 @@
+<!--pages/user/user_publish/user_publish.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">我的发布</view>
+</cu-custom>
+<import src="../../../template/list.wxml" />
+<block wx:for="{{goodsList}}" wx:key="{{index}}">
+  <template is="goodsList" data="{{item ,isUserPublish}}">
+  </template>
+</block>

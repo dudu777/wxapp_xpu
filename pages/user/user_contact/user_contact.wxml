@@ -1,2 +1,25 @@
 <!--pages/user/user_contact/user_contact.wxml-->
-<text>pages/user/user_contact/user_contact.wxml</text>
+<!--pages/goods/publish/ch_contact/ch_contact.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">我的联系方式</view>
+</cu-custom>
+
+<radio-group class="block  margin-top"  >
+<block wx:for="{{con_list}}" wx:key="index">
+  <view class="cu-form-group" bindtap='radioBindtap' data-data='{{item}}'>
+    <text class="title ">{{item.con_type}}</text>
+    <input placeholder="{{item.con_num}}" disabled="true"></input>
+    <radio class="blue margin-left-sm"   ></radio>
+  </view>
+ </block>
+  
+</radio-group>
+
+
+
+<view class=" bg-blue flex padding-sm justify-center" style='position:fixed;bottom:0;left:0;width:100%' bindtap='navToAdd'>
+
+  <view class=' text-lg'>
+    <text class='cuIcon-add text-white text-lg'></text>添加联系方式</view>
+</view>

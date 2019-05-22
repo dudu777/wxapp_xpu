@@ -18,20 +18,24 @@
     <image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
   <view class="padding flex text-center text-grey bg-white shadow-warp">
+  
     <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-orange">{{visitTotal}}</view>
+    <navigator class="content" url="/pages/user/user_publish/user_publish" hover-class="none">
+      <view class="text-xxl text-orange">{{publishTotal}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-writefill"></text> 未发布</view>
+        <text class="cuIcon-writefill"></text> 已发布</view>
+        </navigator>
     </view>
+    
     <view class="flex flex-sub flex-direction solid-right">
       <view class="text-xxl text-blue">{{starCount}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-goodsfill"></text> 已发布</view>
+        <text class="cuIcon-goodsfill"></text> 交易</view>
     </view>
     <view class="flex flex-sub flex-direction">
       <view class="text-xxl text-green">{{forksCount}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-squarecheckfill"></text> 交易</view>
+        <text class="cuIcon-squarecheckfill"></text> 收藏</view>
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
@@ -42,18 +46,13 @@
         <text class="text-grey">学生认证</text>
       </navigator>
     </view>
-     <view class="cu-item arrow">
+     <!-- <view class="cu-item arrow">
       <navigator class="content" url="/pages/user/user_collect/user_collect" hover-class="none">
         <text class="cuIcon-favorfill text-yellow"></text>
         <text class="text-grey">我的收藏</text>
       </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/user/user_contact/user_contact" hover-class="none">
-        <text class="cuIcon-phone text-yellow"></text>
-        <text class="text-grey">我的联系方式</text>
-      </navigator>
-    </view>
+    </view> -->
+    
 
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/user/user_about/user_about" hover-class="none">

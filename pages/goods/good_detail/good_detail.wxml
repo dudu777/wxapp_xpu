@@ -5,45 +5,45 @@
 </cu-custom>
 <view class="cu-form-group ">
   <view class="padding-xs flex align-center">
-    2019年5月3日 15:30
+    {{goodInfo.publishTime}}
   </view>
 </view>
 <view class="cu-form-group" style='display:block'>
   <view class=" padding-xs flex align-center text-xxl ">
-    <view class="text-price text-red">80.00</view>
+    <view class="text-price text-red">{{goodInfo.cellPrice}}</view>
   </view>
-  <view  class=" text-xl padding-xs">
-    商品标题
+  <view class=" text-xl padding-xs">
+    {{goodInfo.title}}
   </view>
-  <view class="  text-lg padding-xs">这是商品的描述信息。这是商品的描述信息。</view>
-<view class="image  padding-xs">
-      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image>    
+  <view class="  text-lg padding-xs">{{goodInfo.description}}</view>
+  <block wx:for="{{goodInfo.img}}" wx:key>
+    <view class="image  padding-xs">
+      <image src="{{item}}" mode="widthFix"></image>
     </view>
-    <view class="padding-xs text-sm flex align-center padding-bottom-lg">
+  </block>
+
+  <view class="padding-xs text-sm flex align-center padding-bottom-lg">
     商品具体细节和交易请于卖家联系。
   </view>
 </view>
-	<view class="cu-form-group margin-top">
-		<view class="title">卖家联系方式</view>
-	</view>
-	<view class="cu-form-group text-df padding-tb-df">
-		卖家已将联系方式设为“仅校友可见”,若想查看，请先进行“校友认证”。
-	</view>
-  <button class="cu-btn block bg-blue round  " style='width:200rpx;margin:60rpx auto;'>立即认证</button>
-  <view class="cu-bar bg-white tabbar border shop tip-bottom">
-
-     <view class="action text-green">
-      <view class=" cuIcon-weixin"></view> 分享
-    </view>
-    <view class="action text-red">
-      <view class=" cuIcon-picfill"></view> 生成图片
-    </view>
-    <view class="action text-yellow">
-      <view class="cuIcon-favor">
-      </view>
-      收藏
-    </view>
-    <view class="btn-group">
-      <button class="cu-btn bg-blue round shadow-blur">联系卖家</button>
-    </view>
+<view class="cu-form-group margin-top">
+  <view class="title">卖家联系方式</view>
+  <view class="margin-tb-sm text-center" bindtap='getContact'>
+    <button class="cu-btn round bg-blue 'shadow'">查看</button>
   </view>
+</view>
+<!-- <view class="cu-form-group text-df padding-tb-df">
+		卖家已将联系方式设为“仅校友可见”,若想查看，请先进行“校友认证”。
+	</view> -->
+<view class="cu-bar bg-white flex tabbar border tip-bottom">
+
+  <view class="action text-green flex-sub" bindtap='share'>
+    <view class=" cuIcon-weixin"></view> 分享
+  </view>
+  <view class="action text-red flex-sub" bindtap='shareImg'>
+    <view class=" cuIcon-picfill"></view> 生成图片
+  </view>
+  <view class="action text-yellow flex-sub" bindtap='favor'>
+    <view class="cuIcon-favor"> </view>收藏
+  </view>
+</view>

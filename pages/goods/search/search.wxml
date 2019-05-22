@@ -6,10 +6,10 @@
 <view class="cu-bar   " style='background-color:#fff'>
   <view class="search-form radius solid-bottom" style='background-color:#fff'>
     <text class="cuIcon-search " style='background-color:#fff'></text>
-    <input type="text" placeholder="搜索图片、文章、视频" style='background-color:#fff;' bindblur='inputBlur'></input>
+    <input type="text" placeholder="搜索图片、文章、视频" style='background-color:#fff;' bindblur='inputBlur' confirm-type="search" bindtap='search'></input>
   </view>
   <view class="action">
-    <button class="cu-btn round line-blue shadow-blur round" bindtap='search'>搜索</button>
+    <button class="cu-btn round line-blue shadow-blur round" bindtap='cancel'>取消</button>
   </view>
 
 </view>
@@ -17,69 +17,75 @@
   <view class="action ">
     搜素结果
   </view>
-
 </view>
 
+<view class="flex-sub bg-white text-center" hidden='{{noResults}}'>
+  <view class="padding">没有搜索结果</view>
+</view>
 
-<view hidden="true">
-<view class="cu-bar bg-white margin-top solid-bottom ">
-  <view class="action ">
-    热门搜素
+<import src="../../../template/list.wxml" />
+<block hidden="{{!searchResult}}" wx:for="{{searchList}}" wx:key="{{index}}">
+  <template is="goodsList" data="{{item}}">
+  </template>
+</block>
+
+<!-- 
+
+<view hidden="{{searchResult}}">
+  <view class="cu-bar bg-white margin-top solid-bottom ">
+    <view class="action ">
+      热门搜素
+    </view>
+
   </view>
-
-</view>
-<view class="padding bg-white">
-  <view class="flex">
-    <view class="flex-sub  padding-lr-sm solid-right ">
-      <view class="content">
-        <text class="cuIcon-hotfill text-red"></text>
-        <text class="text-grey padding-left-xs ">热门搜索1</text>
+  <view class="padding bg-white">
+    <view class="flex">
+      <view class="flex-sub  padding-lr-sm solid-right ">
+        <view class="content">
+          <text class="cuIcon-hotfill text-red"></text>
+          <text class="text-grey padding-left-xs ">考研书籍</text>
+        </view>
       </view>
-    </view>
-    <view class="flex-sub padding-lr-sm ">
-      <view class="content">
-        <text class="cuIcon-hotfill text-orange"></text>
-        <text class="text-grey padding-left-xs">热门搜索2</text>
-      </view>
-    </view>
-  </view>
-</view>
-<view class="padding bg-white">
-  <view class="flex">
-    <view class="flex-sub  padding-lr-sm solid-right ">
-      <view class="content">
-        <text class="cuIcon-hotfill text-red"></text>
-        <text class="text-grey padding-left-xs">热门搜索1</text>
-      </view>
-    </view>
-    <view class="flex-sub padding-lr-sm ">
-      <view class="content">
-        <text class="cuIcon-hotfill text-orange"></text>
-        <text class="text-grey padding-left-xs">热门搜索2</text>
+      <view class="flex-sub padding-lr-sm ">
+        <view class="content">
+          <text class="cuIcon-hotfill text-orange"></text>
+          <text class="text-grey padding-left-xs">四六级习题</text>
+        </view>
       </view>
     </view>
   </view>
-</view>
-
-
-
-<view class="cu-bar bg-white  solid-bottom margin-top">
-  <view class="action">
-    历史搜索
+  <view class="padding bg-white">
+    <view class="flex">
+      <view class="flex-sub  padding-lr-sm solid-right ">
+        <view class="content">
+          <text class="cuIcon-hotfill text-red"></text>
+          <text class="text-grey padding-left-xs">热门搜索1</text>
+        </view>
+      </view>
+      <view class="flex-sub padding-lr-sm ">
+        <view class="content">
+          <text class="cuIcon-hotfill text-orange"></text>
+          <text class="text-grey padding-left-xs">热门搜索2</text>
+        </view>
+      </view>
+    </view>
   </view>
+
+
+
+  <view class="cu-bar bg-white  solid-bottom margin-top">
+    <view class="action">
+      历史搜索
+    </view>
   </view>
-<view class="padding bg-white ">
-  <view class="">
-    <button class=" cu-btn round line-grey margin-xs}}">搜索</button>
-    <button class="cu-btn round line-grey margin-xs}}">搜索历史1</button>
-    <button class="cu-btn round line-grey margin-xs}}">搜索历史2</button>
-    <button class=" cu-btn round line-grey margin-xs}}">历史1</button>
-    <button class=" cu-btn round line-grey margin-xs}}">搜索历史2</button>
+  <view class="padding bg-white ">
+    <view class="">
+      <button class=" cu-btn round line-grey margin-xs}}">搜索</button>
+      <button class="cu-btn round line-grey margin-xs}}">搜索历史1</button>
+      <button class="cu-btn round line-grey margin-xs}}">搜索历史2</button>
+      <button class=" cu-btn round line-grey margin-xs}}">历史1</button>
+      <button class=" cu-btn round line-grey margin-xs}}">搜索历史2</button>
+    </view>
+
   </view>
-
-</view>
-</view>
-
-
-
-
+</view> -->

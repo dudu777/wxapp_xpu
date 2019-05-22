@@ -1,25 +1,17 @@
 <!-- 状态栏 -->
 <cu-custom bgColor="bg-gradual-blue" isCustom="{{true}}">
-  <view slot="content">我的小程序</view>
+  <view slot="content">薯一小程序</view>
 </cu-custom>
 <scroll-view scroll-x class="bg-white nav">
   <view class="flex text-center">
-    <view class="cu-item flex-sub {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabList}}" wx:key bindtap="tabSelect" data-id="{{index}}">
-      {{item}}
+    <view class="cu-item flex-sub {{index ==TabCur?'text-blue cur':''}}" wx:for="{{tabList}}" wx:key bindtap="tabSelect" data-typeObj="{{item}}">
+      {{item.type}}
     </view>
   </view>
 </scroll-view>
 
 <import src="../../../template/list.wxml" />
-
-<view class="grid" >
-<template is="goodsList">
-</template>
-<template is="goodsList">
-</template>
-<template is="goodsList">
-</template>
-<template is="goodsList">
-</template>
-</view>
-
+<block wx:for="{{goodsList}}" wx:key="{{index}}">
+  <template is="goodsList" data="{{item:item,isUserPublish:false}}">
+  </template>
+</block>

@@ -38,6 +38,7 @@ Page({
       stuClass: '通1'
     }).then(function (res) {
       console.log(res)
+      wx.setStorageSync(auth, 0)
     })
 
 

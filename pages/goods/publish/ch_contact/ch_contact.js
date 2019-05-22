@@ -1,4 +1,5 @@
 // pages/goods/publish/ch_contact/ch_contact.js
+var app = getApp()
 var base = require("../../../../utils/base.js")
 Page({
 
@@ -16,34 +17,23 @@ Page({
   onLoad: function (options) {
     console.log(options)
    var that = this
-     //获取用户的联系方式
-    
+     // 获取用户的联系方式
     base.postRq('/getContactById', {
-      openID: '123',   
+      openID: app.globalData.userKey.openid,  
     }).then(function (res) {
-      console.log('地址',res)
       that.setData({
         con_list:res.data.data
-      })
-        
-
-
-
-
-      
-
+      })        
     })
-
   },
+
   navToAdd: function(){
     wx.navigateTo({
       url: "/pages/user/user_contact/add_contact/add_add_contact",
     })
-
   },
 
   radioBindtap(e) {
-    console.log(e.currentTarget.dataset.data)
     setTimeout(function(){
       var pages = getCurrentPages();
        pages[pages.length - 2].setData({
@@ -52,11 +42,8 @@ Page({
        })
      wx.navigateBack({
      delta:1
-
     })
-
-    },500)
-    
+    },500)  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -68,22 +55,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function (e) {
-    
+  onShow: function (e) { 
     var that = this
     //获取用户的联系方式
-
     base.postRq('/getContactById', {
-      openID: '123',
+      openID: app.globalData.userKey.openid
     }).then(function (res) {
       console.log('地址', res)
       that.setData({
         con_list: res.data.data
       })
     })
-
-
-
   },
 
   /**
