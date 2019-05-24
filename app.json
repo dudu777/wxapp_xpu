@@ -8,8 +8,8 @@
     "pages/goods/search/search",
     "pages/user/user_auth/user_auth",
     "pages/user/user_auth/form/form",
-    "pages/user/user_contact/user_contact",
-    "pages/user/user_contact/add_contact/add_add_contact",
+    "pages/user/user_trade/user_trade",
+    "pages/user/user_favor/user_favor",
     "pages/user/user_about/user_about",
     "pages/user/user_publish/user_publish"
   ],

@@ -2,10 +2,10 @@
 
 <!-- 组件显示 -->
 <view hidden="{{currentTab == 0? false: true}}">
-  <component_goods/>
+  <component_goods id="goods"/>
 </view>
 <view hidden="{{currentTab == 1? false: true}}">
-  <component_my/>
+  <component_my id="my"/>
 </view>
 <view class="cu-bar tabbar margin-bottom-xl bg-white tabbar-bottom ">
   <view class="action {{currentTab == 0?'text-blue':'text-gray'}}" data-current="0" bindtap="swichNav">

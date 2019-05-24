@@ -28,14 +28,18 @@
     </view>
     
     <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-blue">{{starCount}}</view>
+    <navigator class="content" url="/pages/user/user_trade/user_trade" hover-class="none">
+      <view class="text-xxl text-blue">{{tradeTotal}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-goodsfill"></text> 交易</view>
+         </navigator>
     </view>
     <view class="flex flex-sub flex-direction">
-      <view class="text-xxl text-green">{{forksCount}}</view>
+    <navigator class="content" url="/pages/user/user_favor/user_favor" hover-class="none">
+      <view class="text-xxl text-green">{{favorTotal}}</view>
       <view class="margin-top-sm">
         <text class="cuIcon-squarecheckfill"></text> 收藏</view>
+         </navigator>
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">

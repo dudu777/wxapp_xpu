@@ -18,8 +18,8 @@ Component({
 
   /* 组件的初始数据 */
   data: {
-    starCount: 0,
-    forksCount: 0,
+    tradeTotal: 0,
+    favorTotal: 0,
     publishTotal: 0,
     auth:'',
     userInfo: {},
@@ -121,7 +121,39 @@ Component({
         console.log('登录',res)
       })
     
-    }
+    },
+    getPublishCount(){
+      var that = this
+      base.postRq('/getPublishById', { openID: app.globalData.userKey.openid }).then(function (res) {
+        console.log('我的发布列表', res)
+        that.setData({
+          publishTotal: res.data.data.length
+        })
+      })
+
+    },
+    getTradeCount() {
+      var that = this
+      base.postRq('/getTradeById', { openID: app.globalData.userKey.openid }).then(function (res) {
+        console.log('我的交易列表', res)
+        that.setData({
+         tradeTotal: res.data.data.length
+        })
+      })
+
+    },
+    getFavorCount() {
+      var that = this
+      base.postRq('/getUserfavor', { openID: app.globalData.userKey.openid }).then(function (res) {
+        console.log('我的收藏列表', res)
+        that.setData({
+          favorTotal: res.data.data.length
+        })
+      })
+
+    },
+    
+
   }
 
 })

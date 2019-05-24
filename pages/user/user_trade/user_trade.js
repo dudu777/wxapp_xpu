@@ -1,18 +1,38 @@
-// pages/publish/publish.js
+// pages/user/user_trade/user_trade.js
+var base = require("../../../utils/base.js")
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    goodsList: [
 
+
+    ],
+    isUserPublish: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    base.postRq('/getTradeById', { openID: app.globalData.userKey.openid }).then(function (res) {
+      console.log('我的交易列表', res)
+      that.setData({
+        goodsList: res.data.data
+      })
+    })
 
+  },
+  nav_detail(e) {
+    let data = JSON.stringify(e.currentTarget.dataset.list)
+
+    wx.navigateTo({
+      url: '/pages/goods/good_detail/good_detail?data=' + data,
+    })
   },
 
   /**
