@@ -6,6 +6,6 @@
 
 <import src="../../../template/list.wxml" />
 <block wx:for="{{goodsList}}" wx:key="{{index}}">
-  <template is="goodsList" data="{{item ,isUserPublish}}">
+  <template is="goodsList" data="{{item ,isUserPublish,isUserTrade}}">
   </template>
 </block>

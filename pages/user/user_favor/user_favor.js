@@ -11,7 +11,8 @@ Page({
 
 
     ],
-    isUserPublish: false
+    isUserPublish: false,
+    isUserTrade: false
   },
 
   /**
@@ -19,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    base.postRq('/getTradeById', { openID: app.globalData.userKey.openid }).then(function (res) {
+    base.postRq('/getUserfavor', { openID: app.globalData.userKey.openid }).then(function (res) {
       console.log('我的收藏列表', res)
       that.setData({
         goodsList: res.data.data
@@ -29,7 +30,6 @@ Page({
   },
   nav_detail(e) {
     let data = JSON.stringify(e.currentTarget.dataset.list)
-
     wx.navigateTo({
       url: '/pages/goods/good_detail/good_detail?data=' + data,
     })
@@ -46,6 +46,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log('sow')
+    var that = this
+    base.postRq('/getUserfavor', { openID: app.globalData.userKey.openid }).then(function (res) {
+      console.log('我的收藏列表', res)
+      that.setData({
+        goodsList: res.data.data,
+        
+      })
+    })
 
   },
 

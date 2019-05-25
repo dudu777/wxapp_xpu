@@ -12,6 +12,7 @@
         <text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">{{item.cellPrice}}元</text>
       </view>
       <view hidden='{{!isUserPublish}}'  class='cu-ba text-center padding-xs bg-red ' catchtap='cancelPublish' data-goodID="{{item.goodID}}">将此下架</view>
+      <view hidden='{{!isUserTrade}}'  class='cu-ba text-center padding-xs bg-yellow '>已下架</view>
 
 
 
@@ -19,5 +20,5 @@
   </view>
 </template>
 
-<template is="goodsList" data="{{item,isUserPublish}}">
+<template is="goodsList" data="{{item,isUserPublish,isUserTrade}}">
 </template>

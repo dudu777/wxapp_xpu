@@ -12,6 +12,6 @@
 
 <import src="../../../template/list.wxml" />
 <block wx:for="{{goodsList}}" wx:key="{{index}}">
-  <template is="goodsList" data="{{item:item,isUserPublish:false}}">
+  <template is="goodsList" data="{{item:item,isUserPublish:false,isUserTrade:false}}">
   </template>
 </block>

@@ -21,6 +21,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    console.log(typeof JSON.parse(options.data).img),
     this.setData({
       goodInfo: JSON.parse(options.data),
       imglist: JSON.parse(options.data).img.split(",")
@@ -33,6 +35,7 @@ Page({
       console.log('我的收藏列表', res)
       for (let i = 0; i < res.data.data.length; i++) {
         if (res.data.data[i].goodID == that.data.goodInfo.goodID) {
+          console.log(res.data.data[i],'在里面')
           that.setData({
             favorStatus: 1,
             favor: false

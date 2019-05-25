@@ -11,7 +11,9 @@ Page({
 
 
     ],
-    isUserPublish: false
+    isUserPublish: false,
+    isUserTrade:true
+    
   },
 
   /**

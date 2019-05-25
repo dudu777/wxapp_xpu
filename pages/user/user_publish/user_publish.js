@@ -11,7 +11,8 @@ Page({
       
      
     ],
-    isUserPublish:true
+    isUserPublish:true,
+    isUserTrade:false
     
   },
 
@@ -64,7 +65,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function (options) {
     var that = this
     base.postRq('/getPublishById', { openID: app.globalData.userKey.openid }).then(function (res) {
       console.log('我的发布列表', res)

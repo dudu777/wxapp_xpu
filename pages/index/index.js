@@ -5,6 +5,7 @@ Page({
     currentTab: 0,
     page:1
   },
+  
   swichNav: function (e) {
     console.log(e)
     let that = this;
@@ -48,8 +49,16 @@ Page({
    
   },
   onLoad: function (option) {
+    if (this.data.currentTab == 1) {
+      console.log('111111')
+
+    }
     
   },
   onshow: function(){
+    if (this.data.currentTab == 1) {
+      console.log('111111')
+
+    }
   }
 })

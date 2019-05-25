@@ -72,10 +72,6 @@ App({
   globalData: {
     userInfo: null,
     userKey:{}, // 存放用户openID，session_key,acess_token
-    goodsInfo:{
-      publishCount:null,
-      tradeCount:null,
-      favorCount:null
-    }
+   
   }
 })

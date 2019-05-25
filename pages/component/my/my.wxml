@@ -23,7 +23,7 @@
     <navigator class="content" url="/pages/user/user_publish/user_publish" hover-class="none">
       <view class="text-xxl text-orange">{{publishTotal}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-writefill"></text> 已发布</view>
+        <text class="cuIcon-goodsfill"></text> 已发布</view>
         </navigator>
     </view>
     
@@ -31,14 +31,14 @@
     <navigator class="content" url="/pages/user/user_trade/user_trade" hover-class="none">
       <view class="text-xxl text-blue">{{tradeTotal}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-goodsfill"></text> 交易</view>
+        <text class="cuIcon-squarecheckfill"></text> 交易</view>
          </navigator>
     </view>
     <view class="flex flex-sub flex-direction">
     <navigator class="content" url="/pages/user/user_favor/user_favor" hover-class="none">
       <view class="text-xxl text-green">{{favorTotal}}</view>
       <view class="margin-top-sm">
-        <text class="cuIcon-squarecheckfill"></text> 收藏</view>
+        <text class="cuIcon-favorfill"></text> 收藏</view>
          </navigator>
     </view>
   </view>
