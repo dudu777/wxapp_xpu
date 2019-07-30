@@ -1,77 +1,72 @@
 <!-- 状态栏 -->
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg bg-gradual-blue">
-  <view class="userinfo">
-    <button class="cu-btn round line-white " wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar " src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      
-      <text class="text-white text-xl">{{userInfo.nickName}}</text>
-      <view wx:if='{{auth}}'>已认证</view>
-      <view wx:else>未认证</view>
-     
+    <view class="userinfo">
+      <button class="cu-btn round line-white " wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
 
-    </block>
-  </view>
-    
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar " src="{{userInfo.avatarUrl}}" mode="cover"></image>
+
+        <text class="text-white text-xl">{{userInfo.nickName}}</text>
+        <view wx:if='{{auth==0}}'>未认证</view>
+        <view wx:else>已认证</view>
+
+
+      </block>
+    </view>
     <image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
-  <view class="padding flex text-center text-grey bg-white shadow-warp">
-  
-    <view class="flex flex-sub flex-direction solid-right">
-    <navigator class="content" url="/pages/user/user_publish/user_publish" hover-class="none">
-      <view class="text-xxl text-orange">{{publishTotal}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-goodsfill"></text> 已发布</view>
-        </navigator>
-    </view>
-    
-    <view class="flex flex-sub flex-direction solid-right">
-    <navigator class="content" url="/pages/user/user_trade/user_trade" hover-class="none">
-      <view class="text-xxl text-blue">{{tradeTotal}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-squarecheckfill"></text> 交易</view>
-         </navigator>
-    </view>
-    <view class="flex flex-sub flex-direction">
-    <navigator class="content" url="/pages/user/user_favor/user_favor" hover-class="none">
-      <view class="text-xxl text-green">{{favorTotal}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-favorfill"></text> 收藏</view>
-         </navigator>
-    </view>
-  </view>
-  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-   
-     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/user/user_auth/user_auth" hover-class="none">
-        <text class="cuIcon-profilefill text-red"></text>
-        <text class="text-grey">学生认证</text>
-      </navigator>
-    </view>
-     <!-- <view class="cu-item arrow">
-      <navigator class="content" url="/pages/user/user_collect/user_collect" hover-class="none">
-        <text class="cuIcon-favorfill text-yellow"></text>
-        <text class="text-grey">我的收藏</text>
-      </navigator>
-    </view> -->
-    
 
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/user/user_about/user_about" hover-class="none">
-        <text class="cuIcon-group_fill text-green"></text>
-        <text class="text-grey">关于我们</text>
-      </navigator>
+  <block wx:if="{{hasUserInfo}}">
+    <view class="padding flex text-center text-grey bg-white shadow-warp">
+
+      <view class="flex flex-sub flex-direction solid-right">
+        <navigator class="content" url="/pages/user/user_publish/user_publish" hover-class="none">
+          <view class="text-xxl text-orange">{{publishTotal}}</view>
+          <view class="margin-top-sm">
+            <text class="cuIcon-goodsfill"></text> 已发布</view>
+        </navigator>
+      </view>
+
+      <view class="flex flex-sub flex-direction solid-right">
+        <navigator class="content" url="/pages/user/user_trade/user_trade" hover-class="none">
+          <view class="text-xxl text-blue">{{tradeTotal}}</view>
+          <view class="margin-top-sm">
+            <text class="cuIcon-squarecheckfill"></text> 交易</view>
+        </navigator>
+      </view>
+      <view class="flex flex-sub flex-direction">
+        <navigator class="content" url="/pages/user/user_favor/user_favor" hover-class="none">
+          <view class="text-xxl text-green">{{favorTotal}}</view>
+          <view class="margin-top-sm">
+            <text class="cuIcon-favorfill"></text> 收藏</view>
+        </navigator>
+      </view>
     </view>
-    
-    
-    <view class="cu-item arrow">
-      <button class="cu-btn content" open-type="feedback">
-        <text class="cuIcon-writefill text-orange"></text>
-        <text class="text-grey">意见反馈</text>
-      </button>
+    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+
+      <view class="cu-item arrow">
+        <navigator class="content" url="/pages/user/user_auth/user_auth" hover-class="none">
+          <text class="cuIcon-profilefill text-red"></text>
+          <text class="text-grey">学生认证</text>
+        </navigator>
+      </view>
+
+      <view class="cu-item arrow">
+        <navigator class="content" url="/pages/user/user_about/user_about" hover-class="none">
+          <text class="cuIcon-group_fill text-green"></text>
+          <text class="text-grey">关于我们</text>
+        </navigator>
+      </view>
+
+
+      <view class="cu-item arrow">
+        <button class="cu-btn content" open-type="feedback">
+          <text class="cuIcon-writefill text-orange"></text>
+          <text class="text-grey">意见反馈</text>
+        </button>
+      </view>
+
     </view>
-    
-  </view>
+  </block>
 </scroll-view>

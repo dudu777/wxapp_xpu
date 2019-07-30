@@ -73,8 +73,11 @@
     <view class="title">是否设为仅校友可见</view>
     <switch name="isWatch"></switch>
   </view>
-  <view class="padding flex justify-center">
-    <button class="cu-btn round bg-blue  margin-sm" style='width:300rpx' form-type="submit">发布</button>
+  <view class="padding flex justify-center" wx:if="{{btn_loading}}">
+    <button class="cu-btn round bg-blue  margin-sm" style='width:300rpx' form-type="submit" >发布</button>
+  </view>
+   <view class="padding flex justify-center" wx:else>
+    <button class="cu-btn round bg-blue  margin-sm" style='width:300rpx' form-type="submit" loading >发布中</button>
   </view>
   
 </form>

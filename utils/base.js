@@ -1,8 +1,8 @@
 function postRq (url,data){
   return new Promise((resolve,reject) =>{
     wx.request({
-    // url: 'http://47.106.139.243:5000'+url,
-      url: 'http://localhost:5000' + url,
+      url: 'https://xpu.duduer.top'+url,
+      //url: 'http://localhost:5000' + url,
       data:data,
       
       method: "POST",
@@ -15,8 +15,8 @@ function postRq (url,data){
 function getRq(url,data){
   return new Promise((resolve, reject) => {
     wx.request({
-      // url: 'http://47.106.139.243:5000' + url,
-      url: 'http://localhost:5000' + url,
+       url: 'https://xpu.duduer.top' + url,
+      //url: 'http://localhost:5000' + url,
       data: data,
       header: {
         "Content-Type": "application/json"

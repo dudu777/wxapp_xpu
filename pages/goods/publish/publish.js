@@ -1,5 +1,6 @@
 // pages/publish/publish.js
 var app = getApp()
+var util = require("../../../utils/util.js")
 var base = require("../../../utils/base.js")
 Page({
 
@@ -14,7 +15,8 @@ Page({
     i: 0,
     hasContact: true, //默认有联系方式
     type: null,
-    formData: null
+    formData: null,
+    btn_loading: true
 
   },
 
@@ -22,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+   
 
   },
 
@@ -95,7 +98,7 @@ Page({
     }
     var imagecount = that.data.imgList.length
     wx.uploadFile({
-      url: 'http://localhost:5000/upload',
+      url: 'https://xpu.duduer.top/upload',
      // url: 'http://47.106.139.243:5000/upload', // 仅为示例，非真实的接口地址
       filePath: that.data.imgList[that.data.i],
       name: 'file',
@@ -114,14 +117,19 @@ Page({
             openID: app.globalData.userKey.openid,
             img: str_SerImg.join(","),
             type: that.data.type,
-            publishTime: new Date(),
+            publishTime: util.formatTime(new Date()),
             ...that.data.formData
           }
           // 发布接口
+        
+
           base.postRq('/goods_publish', para).then(function(res) {
             console.log(res.data.code)
+            that.setData({
+              btn_loading: true
+            })
             wx.showToast({
-              title: '发布成功',
+              title: '发布成功'
             })
             wx.navigateTo({
               url: "/pages/index/index",
@@ -137,6 +145,9 @@ Page({
         console.log('发布错误',e)
         wx.showToast({
           title: '重新发布',
+        })
+        that.setData({
+          btn_loading: true
         })
       }
     })
@@ -156,6 +167,9 @@ Page({
       } else {
         console.log('diaoyong')
         this.uploadImg();
+        this.setData({
+          btn_loading: false
+        })
       }
     
   },

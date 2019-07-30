@@ -11,8 +11,8 @@
         <text style="font-size:32rpx">{{item.buyPrice}}元</text>
         <text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">{{item.cellPrice}}元</text>
       </view>
-      <view hidden='{{!isUserPublish}}'  class='cu-ba text-center padding-xs bg-red ' catchtap='cancelPublish' data-goodID="{{item.goodID}}">将此下架</view>
-      <view hidden='{{!isUserTrade}}'  class='cu-ba text-center padding-xs bg-yellow '>已下架</view>
+      <view hidden='{{!isUserPublish}}' class='cu-ba text-center padding-xs bg-red ' catchtap='cancelPublish' data-goodID="{{item.goodID}}">将此下架</view>
+      <view hidden='{{!isUserTrade}}' class='cu-ba text-center padding-xs bg-yellow '>已下架</view>
 
 
 
@@ -22,3 +22,30 @@
 
 <template is="goodsList" data="{{item,isUserPublish,isUserTrade}}">
 </template>
+
+<template name="page_loading">
+  <view style='margin-top:400rpx;' hidden='{{loading}}'>
+    <view class="bg-gray ">
+      <image src="https://image.weilanwl.com/gif/loading-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+    </view>
+  </view>
+</template>
+<template is="page_loading" data="{{up_loading}}"></template>
+
+<template name="up_loading">
+  <view class="margin">
+    <view class="bg-gray">
+      <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+    </view>
+  </view>
+</template>
+<template is="up_loading" data="{{up_loading}}"></template>
+
+<template name="none_warn">
+  <view class="cu-chat" hidden='{{none_warn}}'>
+    <view class="cu-info">
+      <text class="cuIcon-warnfill text-yellow "></text> 暂无更多数据
+    </view>
+  </view>
+</template>
+<template is="none_warn" data="{{none_warn}}"></template>

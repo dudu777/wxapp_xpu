@@ -6,7 +6,7 @@
 <view class="cu-bar   " style='background-color:#fff'>
   <view class="search-form radius solid-bottom" style='background-color:#fff'>
     <text class="cuIcon-search " style='background-color:#fff'></text>
-    <input type="text" placeholder="搜索图片、文章、视频" style='background-color:#fff;' bindblur='inputBlur' confirm-type="search" bindtap='search'></input>
+    <input type="text" placeholder="搜索商品关键字" style='background-color:#fff;' bindblur='inputBlur' confirm-type="search" bindconfirm='search'></input>
   </view>
   <view class="action">
     <button class="cu-btn round line-blue shadow-blur round" bindtap='cancel'>取消</button>
@@ -15,7 +15,7 @@
 </view>
 <view class="cu-bar bg-white margin-top solid-bottom ">
   <view class="action ">
-    搜素结果
+    搜索结果
   </view>
 </view>
 
@@ -29,6 +29,7 @@
   </template>
 </block>
 
+ 
 <!-- 
 
 <view hidden="{{searchResult}}">

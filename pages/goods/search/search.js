@@ -9,7 +9,8 @@ Page({
     key: '',
     searchList: [],
     searchResult: false,
-noResults:true
+noResults:true,
+loading: true
 
 
 
@@ -30,18 +31,24 @@ noResults:true
   },
   search: function(e) {
     var that = this
+    wx.showLoading({
+      title: '加载中...',
+    })
     if (that.data.key !== ""){
     base.getRq('/search', {
       key: that.data.key,
     }).then(function(res) {
 
       if (res.data.data.length == 0) {
+        console.log('无搜索结果')
+        wx.hideLoading();
         that.setData({
           noResults: false,
           searchList: null
         })
       } else {
         console.log('搜索', res)
+        wx.hideLoading();
         that.setData({
           searchResult: true,
           noResults: true,

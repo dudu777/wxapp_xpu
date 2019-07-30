@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -102,6 +102,20 @@
 					"id": -1,
 					"name": "我的发布",
 					"pathName": "pages/user/user_publish/user_publish",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/user/user_about/user_about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "认证信息",
+					"pathName": "pages/user/user_auth/info/info",
 					"scene": null
 				}
 			]

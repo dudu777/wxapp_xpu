@@ -23,6 +23,8 @@ Component({
     type:'图书',
     TabCur: 0,
     scrollLeft: 0,
+    loading: true,
+    none_warn: true
   
   },
   
@@ -30,6 +32,9 @@ Component({
   lifetimes: {
     attached: function (e) {
      var that = this
+     that.setData({
+       loading: false
+     })
       base.getRq('/getTaglist').then(function (res) {
         
         that.setData({
@@ -58,24 +63,39 @@ Component({
         type: that.data.type,
         page: page
       }).then(function (res) {
-        if (res.data.data.rows.length == 0) {
-          console.log('无返回数据 returnfalse')
-         return true
-        } else {     
-          console.log('you 返回数据')    
+        console.log(res.data)
+        that.setData({
+          loading: true
+        })
+        if (res.data.data.rows.length > 0) {
+          console.log('you 返回数据')
           that.setData({
             goodsList:
               that.data.goodsList.concat(res.data.data.rows)
           })
           that.data.goodsList.push(res.data.data.rows)
           console.log('/getGoodsBytype商品列表', res.data.data)
+         
+        } else { 
+          console.log('无返回数据 returnfalse')
+          that.setData({
+            none_warn: false
+          })
+
+          return true    
+         
         }
       })
 
     },
     tabSelect(e) {
       var that = this
+      console.log(e)
+      
       that.setData({
+        loading: false,
+        none_warn: true,
+          goodsList:[],
         TabCur: e.currentTarget.dataset.typeobj.id,
         type: e.currentTarget.dataset.typeobj.type,
         scrollLeft: (e.currentTarget.dataset.id - 1) * 60
@@ -84,16 +104,30 @@ Component({
         type: that.data.type,
         page: 1
       }).then(function (res) {
-        if (res.data.data.rows.length == 0) {
-          console.log('无返回数据')
-          that.setData({
-            goodsList: null
-          })
+
+        that.setData({
+          loading: false
+        })
+        if (res.data.data.rows.length > 0) {
+          setTimeout(function () {
+            that.setData({
+              loading: true,
+              goodsList:
+                that.data.goodsList.concat(res.data.data.rows)
+            })
+          }, 1000)
+          
+          
         } else {
-          that.setData({
-            goodsList:
-              that.data.goodsList.concat(res.data.data.rows)
-          })
+          console.log('无返回数据')
+          setTimeout(function () {
+            that.setData({
+              goodsList: [],
+              loading: true,
+              none_warn: false
+            })
+          }, 1000)
+          
         }
       })
       

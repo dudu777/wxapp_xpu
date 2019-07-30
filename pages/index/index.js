@@ -41,24 +41,37 @@ Page({
    })
     if (result) {
       console.log('触底 returnfalse ')
+   
     
     }else{
       console.log('不能调用')
     result = this.selectComponent("#goods").getGoodsList(this.data.page)
+      this.setData({
+        none_loading: true
+      })
     }
    
   },
   onLoad: function (option) {
-    if (this.data.currentTab == 1) {
-      console.log('111111')
-
-    }
+   
     
   },
   onshow: function(){
-    if (this.data.currentTab == 1) {
-      console.log('111111')
+  
+  },
 
+
+  onShareAppMessage: function () {
+    return {
+      title: '优淘集',
+      desc: '为西安工程大学校友提供生活便利！',
+      path: 'pages/index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
     }
-  }
+  },
 })

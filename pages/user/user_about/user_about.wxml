@@ -1,2 +1,23 @@
 <!--pages/user/user_about/user_about.wxml-->
-<text>pages/user/user_about/user_about.wxml</text>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">关于</view>
+</cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于优淘集</view>
+  <view class='text-content'>
+    <view>亲爱的校友，您好！非常感谢您使用优淘集小程序。</view>
+    <view class='margin-top-sm'>优淘集小程序是一款服务于西安工程大学校友的二手图书及生活小物件的信息发布平台，主要为校友在学习和生活上提供一些便利。本平台只提供商品的发布信息，未涉及线上交易业务。</view>
+    <view class='margin-top-sm'>下面的文字是我对此产品设计开发以及后期迭代的一些想法，对此感兴趣的同学可以看看。</view>
+  </view>
+</view>
+
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于我（们）</view>
+  <view class='text-content'>
+    <view>我是一名16级电子信息学院通信工程专业的本科生。</view>
+    <view class='margin-top-sm'>最初有开发校园二手信息发布平台的想法是在一次班团例会上，年级辅导员刘凤萍老师提出为解决考研学生对历届学长学姐考研资料的需求，学校有计划为大家提供考研二手资料信息的平台。于是，我便有了利用微信小程序灵活快捷的特点作为此平台的支撑的想法。后来，我联系了刘凤萍老师，和她交流了我的想法.在这里，我非常感谢刘书记和刘老师对这个产品的支持和建议，特别是提出一些我没有意想到的风险。</view>
+  </view>
+  <view class='margin-top-sm'>这个项目开发上面，特别感谢ColorUI组件库提供的精美UI，使我在UI界面开发上节省了很多的时间。</view>
+  <view class='margin-top-sm'>由于接下来的时间里忙于实习工作，无法顾及此产品下一版的迭代，希望对这个感兴趣的学弟学妹可以接手，通过优淘集小程序的不断迭代为校友带来更多便利，例如：失物招领、寻物启事等等。前后端代码都可以为大家开源，并且一对一讲解代码架构帮助大家更好的上手，如果你觉得还不错，请联系我（微信号：du15291072753）</view>
+</view>

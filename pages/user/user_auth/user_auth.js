@@ -9,7 +9,9 @@ Page({
   data: {
    
     imgUrl: '/images/imgAdd.png',
-    test:''
+    stuInfo:{},
+    imgAuth: true
+  
 
   },
 
@@ -17,14 +19,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
-    // var base = require("../../../utils/base.js")
-    // base.postRq('user/list', {
-    //     username: '1',
-    //     password: '2'
-    // }).then(function(res){
-    //   console.log(res)
-    // })
+   
+   if(wx.getStorageSync('auth')){
+     wx.navigateTo({
+       url: '/pages/user/user_auth/info/info',
+       
+          
+     })
+   }
    
   },
 
@@ -42,8 +44,9 @@ Page({
     return JSON.stringify(data);
   },
   navToForm() {
+    var auth = JSON.stringify(this.data.stuInfo)
 wx.navigateTo({
-  url: '/pages/user/user_auth/form/form',
+  url: '/pages/user/user_auth/form/form?stuInfo='+auth,
 })
   },
   ChooseImage() {
@@ -58,24 +61,41 @@ wx.navigateTo({
             imgUrl: res.tempFilePaths
           })
         console.log(app.globalData.userKey.access_token)
+        wx.showLoading({
+          title: '识别中',
+        })
         wx.uploadFile({
-          url: 'http://localhost:5000/upload', // 仅为示例，非真实的接口地址
+          url: 'https://xpu.duduer.top/stuAuth', // 仅为示例，非真实的接口地址
           filePath: res.tempFilePaths[0],
           name: 'file',
-          formData: {
-            user: 'dudu'
-          },
           method:'POST',
           success: (res) =>  {
             console.log(res)
-            let data = res.data.replace(/ /g,"")
+            
+            let data = res.data.replace(/ /g, "")
             data = JSON.parse(data)
             console.log(data)
+            console.log(data.data.ret)
+            if (data.data.ret == undefined) {
+              wx.hideLoading();
+              wx.showModal({
+                title: '识别错误',
+                content: '请拍摄或上传清晰的学生证照片!',
+              })
+              
+              return
+            }
             this.setData({
-              test: data.url
+              imgAuth: false,
+              stuInfo : data
+            })
+            wx.hideLoading();
+            wx.showToast({
+              title: '识别成功',
             })
           }
-        })
+          })   
+         
       }
     });
   },

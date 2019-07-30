@@ -1,0 +1,38 @@
+<!--pages/user/user_auth/info/info.wxml-->
+<!--pages/user/user_auth/user_auth.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">认证信息</view>
+</cu-custom>
+
+
+<view class="  flex justify-center margin-top-lg " bindtap="ChooseImage">
+  <image class='' src='{{imgUrl}}' mode="aspectFit" style='width:400rpx;height:240rpx'></image>
+</view>
+
+
+
+<view class="cu-form-group margin-top  ">
+    <view class="title">姓名</view>
+     <input disabled='true' placeholder="{{name}}"></input>
+  </view>
+  <view class="cu-form-group   ">
+    <view class="title">班级</view>
+     <input disabled='true' placeholder="{{stuClass}}"></input>
+  </view>
+<view class="cu-form-group  ">
+    <view class="title">学院</view>
+     <input disabled='true' placeholder="{{academy}}"></input>
+  </view>
+<view class="cu-form-group   ">
+    <view class="title">学号</view>
+     <input disabled='true' placeholder="{{stuID}}"></input>
+  </view>
+  <view class="cu-form-group  margin-top ">
+    <view class="title">认证时间</view>
+     <input disabled='true' placeholder="{{date}}"></input>
+  </view>
+  <view class="text-center text-sm margin-top -lg">*您已完成学生认证，认证信息不可修改！*</view>
+  
+
+

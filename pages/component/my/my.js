@@ -21,7 +21,9 @@ Component({
     tradeTotal: 0,
     favorTotal: 0,
     publishTotal: 0,
-    auth:'',
+    auth:wx.getStorage({
+      key: 'auth'
+    }),
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -32,9 +34,10 @@ Component({
   lifetimes:{
     
     attached: function () {
-      console.log('attache')
+
+      console.log(app.globalData.userKey.openid)
       var that = this
-      base.postRq('/getPublishById', { openID: '123' }).then(function (res) {
+      base.postRq('/getPublishById', { openID: app.globalData.userKey.openid }).then(function (res) {
        
         that.setData({
           publishTotal: res.data.data.length
@@ -42,26 +45,14 @@ Component({
       })
       
     
-      //验证接口 通过
-      // base.postRq('/login', {
-      //   // nickname: this.data.userInfo.nickName,
-      //   // avatarurl: this.data.userInfo.avatarUrl,
-      //   // openid: app.globalData.userKey.openid,
-      //   // gender:this.data.userInfo.gender,
-      //   // auth:0
-      //   nickName: 'test8',
-      //  avatarUrl: 'test8',
-      //   openID: 'test8',
-      //   gender: 'test8',
-      //   auth: 0
-      // }).then(function (res) {
-      //   console.log('登录', res)
-      // })
+     
       if (app.globalData.userInfo) {
         that.setData({
           userInfo: app.globalData.userInfo,
-          hasUserInfo: true
+          hasUserInfo: true,
+          auth:wx.getStorageSync("auth")
         })
+        console.log(that.data.auth)
       } else if (that.data.canIUse) {
         // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
         // 所以此处加入 callback 以防止这种情况
@@ -96,6 +87,7 @@ Component({
       console.log('datached')
     },
   },
+  
 
   /* 组件的方法列表 */
   methods: {
@@ -107,18 +99,16 @@ Component({
         hasUserInfo: true
       })
       base.postRq('/login', {
-        // nickname: this.data.userInfo.nickName,
-        // avatarurl: this.data.userInfo.avatarUrl,
-        // openid: app.globalData.userKey.openid,
-        // gender:this.data.userInfo.gender,
-        // auth:0
-        nickName: app.globalData.userInfo.nickname,
-        avatarUrl: app.globalData.avatarurl,
+      
+        nickName: app.globalData.userInfo.nickName,
+        avatarUrl: app.globalData.userInfo.avatarUrl,
         openID: app.globalData.userKey.openid,
-        gender: app.globalData.gender,
-        auth: 0
+        gender: app.globalData.userInfo.gender,
+        
       }).then(function (res) {
         console.log('登录',res)
+        wx.setStorageSync('auth', res.data.data.auth)
+        
       })
     
     },

@@ -8,21 +8,21 @@ App({
 
     // 登录
     wx.login({
+    
       
       success: res => {
+        console.log('applogin')
         if (res.code) {
           // 发起网络请求
           wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session',
+            url: 'http://localhost:5000/wxlogin',
             data: {
-              appid: 'wx6dcff2f0f1a73aeb',
-              secret: 'd0347ee63b4454fa34d3b38b667c3e5f',
               js_code: res.code,
-              grant_type: 'authorization_code'
             },
             success: res => {
-              this.globalData.userKey.openid = res.data.openid
-              this.globalData.userKey.session_key = res.data.session_key
+              console.log(res)
+              this.globalData.userKey.openid = res.data.data.openid
+              this.globalData.userKey.session_key = res.data.data.session_key
             }
           })
         } else {
@@ -32,6 +32,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       
     })
+    console.log(this.globalData.userKey.openid)
     // 获取用户信息
     wx.request({
       url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx6dcff2f0f1a73aeb&secret=d0347ee63b4454fa34d3b38b667c3e5f',
@@ -71,7 +72,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    userKey:{}, // 存放用户openID，session_key,acess_token
-   
+    userKey:{} // 存放用户openID，session_key,acess_token
   }
 })

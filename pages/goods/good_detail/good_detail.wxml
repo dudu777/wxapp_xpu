@@ -53,14 +53,16 @@
 <!-- <view class="cu-form-group text-df padding-tb-df">
 		卖家已将联系方式设为“仅校友可见”,若想查看，请先进行“校友认证”。
 	</view> -->
-<view class="cu-bar bg-white flex tabbar border tip-bottom">
+<view class="cu-bar bg-white flex tabbar border tip-bottom" style='height:50rpx'>
 
-  <view class="action text-green flex-sub" bindtap='share'>
-    <view class=" cuIcon-weixin"></view> 分享
-  </view>
-  <view class="action text-red flex-sub" bindtap='shareImg'>
+  <!-- <view class="action text-green flex-sub" >
+  <button  class='share-btn' open-type="share" style='background-color:#fff;border-color:#fff;line-height:30rpx;'>
+    <view class=" cuIcon-weixin text-green"></view><view class='text-green text-xs'> 推荐给朋友</view>
+ </button>
+  </view> -->
+  <!-- <view class="action text-red flex-sub" bindtap='shareImg'>
     <view class=" cuIcon-picfill"></view> 生成图片
-  </view>
+  </view> -->
   <view class="action text-yellow flex-sub" bindtap='favor'>
    <view hidden="{{!favor}}"> <view class="cuIcon-favor" > </view>收藏</view>
    <view hidden="{{favor}}"> <view class="cuIcon-favorfill" > </view>收藏</view>

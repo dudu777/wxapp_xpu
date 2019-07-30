@@ -2,7 +2,7 @@
 
 <!-- 组件显示 -->
 <view hidden="{{currentTab == 0? false: true}}">
-  <component_goods id="goods"/>
+  <component_goods id="goods" style="padding-bottom:260rpx"/>
 </view>
 <view hidden="{{currentTab == 1? false: true}}">
   <component_my id="my"/>

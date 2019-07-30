@@ -13,6 +13,7 @@ Page({
     isCopy: false,
     favorStatus: 0,
     favor: true,
+    loading:false
 
 
   },
@@ -21,62 +22,72 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
-    console.log(typeof JSON.parse(options.data).img),
-    this.setData({
-      goodInfo: JSON.parse(options.data),
-      imglist: JSON.parse(options.data).img.split(",")
-
-    })
+wx.showLoading({
+  title: '加载中',
+})
+    console.log(typeof JSON.parse(options.data).img)
     var that = this
+    
+      that.setData({
+        
+        goodInfo: JSON.parse(options.data),
+        
+        imglist: JSON.parse(options.data).img.split(",")
+
+      })
+
+    
     base.postRq('/getUserfavor', {
       openID: app.globalData.userKey.openid
     }).then(function(res) {
+      wx.hideLoading()
       console.log('我的收藏列表', res)
       for (let i = 0; i < res.data.data.length; i++) {
         if (res.data.data[i].goodID == that.data.goodInfo.goodID) {
           console.log(res.data.data[i],'在里面')
           that.setData({
             favorStatus: 1,
-            favor: false
+            favor: false,
+
           })
+         
         }
       }
     })
   },
 
   getContact() {
-    if (this.data.goodInfo.isWatch == 1) { // 联系方式不给非校友查看
-      if (this.data.goodInfo.isWatch = 0) { // 联系方式不给非校友查看
-        if (wx.getStorageSync("auth")) { // 未认证
-          console.log("未认证")
-          wx.showModal({
-            content: '卖家将联系方式设置为仅校友查看',
-            cancelText: '取消',
-            confirmText: '去认证',
-            success: res => {
-              wx.navigateTo({
-                url: "/pages/user/user_auth/user_auth",
-              })
-            }
-          })
-        } else {
-          this.setData({
-            isWatch: false,
-            isCopy: true
-          })
-        }
-
+    console.log("点击")
+    if (this.data.goodInfo.isWatch == 1) { // 联系方式仅校友查看
+    console.log('仅校友')
+    //判断是否认证
+      if (wx.getStorageSync("auth") == 0) { // 未认证
+      console.log('未认证')
+        wx.showModal({
+          content: '卖家将联系方式设置为仅校友查看',
+          cancelText: '取消',
+          confirmText: '去认证',
+          success: res => {
+            wx.navigateTo({
+              url: "/pages/user/user_auth/user_auth",
+            })
+          }
+        })
+      }else{
+        console.log("已认证")
+        this.setData({
+          isWatch: false,
+          isCopy: true
+        })
       }
-
-    } else {
-      console.log("888")
+    }else{
+      console.log('都可以查看')
       this.setData({
         isWatch: false,
         isCopy: true
       })
-
     }
+  
   },
   CopyContact(e) {
     wx.setClipboardData({
@@ -91,6 +102,7 @@ Page({
   },
   share: function() {
     console.log('分享')
+    this.onShareAppMessage();
   },
   shareImg: function() {
     console.log('生成图片')
@@ -197,6 +209,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+    return {
+      title:'11',
+      path
+    }
 
   }
 })

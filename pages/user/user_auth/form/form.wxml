@@ -4,32 +4,21 @@
   <view slot="content">确认信息</view>
 </cu-custom>
 
-<view class="padding bg-white margin-top">
-  <view class="text-left padding-lr-sm padding-bottom-xs">温馨提示：若您的信息有误，可手动修改。</view>
-</view>
-<form>
+
+<view class='margin-top'>
+
+<block wx:for="{{cardInfo}}" wx:key="{{index}}">
+<view class="cu-form-group  ">
+    <view class="title">{{item.word_name}}</view>
+     <input disabled='true' placeholder="{{item.word}}"></input>
+  </view>
+
+</block>
   
 
-  <view class="cu-form-group  margin-top ">
-    <view class="title">姓名</view>
-     <input placeholder="杜萍萍"></input>
-  </view>
-  <view class="cu-form-group">
-    <view class="title">学号</view>
-     <input placeholder="123"></input>
-  </view>
-  <view class="cu-form-group  ">
-    <view class="title">学院</view>
-     <input placeholder="电子信息学院"></input>  
-  </view>
-  <view class="cu-form-group">
-    <view class="title">班级</view>
-      <input placeholder="通信1班"></input>
-  </view>
-
-</form>
-<view class='padding-xl'>
-<button class="cu-btn block bg-blue margin-tb-sm df" bindtap='submit'>
+</view>
+<view class='padding-xl margin-lg'>
+<button class="cu-btn block bg-blue " style='width:350rpx;height:60rpx;;margin:auto'v bindtap='submit'>
    提交</button>
 </view>
-<view class="text-center text-sm">实名认证信息提交后不可修改，请谨慎检查！</view>
+<view class="text-center text-sm">实名认证信息提交后不可修改，请确保是本人卡片！</view>

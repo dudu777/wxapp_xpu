@@ -1,6 +1,6 @@
 <!-- 状态栏 -->
 <cu-custom bgColor="bg-gradual-blue" isCustom="{{true}}">
-  <view slot="content">薯一小程序</view>
+  <view slot="content">优淘集</view>
 </cu-custom>
 <scroll-view scroll-x class="bg-white nav">
   <view class="flex text-center">
@@ -10,8 +10,12 @@
   </view>
 </scroll-view>
 
+
+
 <import src="../../../template/list.wxml" />
 <block wx:for="{{goodsList}}" wx:key="{{index}}">
   <template is="goodsList" data="{{item:item,isUserPublish:false,isUserTrade:false}}">
   </template>
 </block>
+ <template is="page_loading" data="{{loading}}"> </template>
+  <template is="none_warn" data="{{none_warn}}"> </template>
