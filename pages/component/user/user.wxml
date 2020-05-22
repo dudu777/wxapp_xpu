@@ -1,0 +1,85 @@
+<!--pages/component/user/user.wxml-->
+
+
+<!--功能区域-->
+<scroll-view scroll-y class="scrollPage" >
+  <view class="bg-gradual-blue padding-tb solid-bottom">
+  <view class="content text-center text-lg padding-tb">个人中心</view>
+    <view class=" margin-tb-xl text-center">
+      <image bindtap="bindViewTap" class="userinfo-avatar " src="{{userInfo.avatarUrl}}" mode="cover" style="width: 64px;height: 64px;margin: auto;"></image>
+      <button class="cu-btn round line-white btn-avatar" hidden="{{hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin:90rpx auto"> 获取头像</button>
+      <view class="text-xl margin-top  text-center">{{userInfo.nickName}}</view>
+    </view>
+     <image src="/icon/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+ 
+  <!--数据-->
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange ">{{gln0_num}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-same"></text>报失</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue ">{{gln1_num}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-newshot"></text>拾遗</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green ">{{good_num}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-goods"></text>闲置</view>
+    </view>
+  </view>
+  
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-item arrow">
+      <navigator class="content" url="/pages/auth/auth" hover-class="none">
+        <text class="cuIcon-profilefill {{auth == 1?'text-blue':'text-gray'}}"></text>
+        <text class="text-grey">{{auth == 0?'校友认证':'认证信息'}}</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-green"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/about" hover-class="none">
+        <text class="cuIcon-creativefill text-red"></text>
+        <text class="text-grey">关于作者</text>
+      </navigator>
+    </view>
+    
+    
+     <view class="cu-item" bindtap="clearStorage">
+      <button class="cu-btn content" >
+        <text class="cuIcon-deletefill text-cyan"></text>
+        <text class="text-grey">清除缓存</text>
+      </button>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>
+
+
+
+
+  <!--获取头像弹框-->
+  <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+    <view class="cu-dialog padding-lr-xl padding-tb-xl  bg-white">
+      <view class="text-black">
+        <text class=" text-xl">"生活帮"</text> 需要展示您的头像信息，您是否允许？
+      </view>
+      <view class="cu-bar margin-top-xl">
+        <button class="cu-btn  line-grey" style="width:200rpx;height:80rpx" bindtap="hideModal">取消</button>
+        <button class="cu-btn  bg-blue shadow" style="width:200rpx;height:80rpx" open-type="getUserInfo" bindgetuserinfo="getUserInfo">允许</button>
+      </view>
+    </view>
+  </view>
+  <!--加载动画-->
+  <import src="../../../template/list.wxml" />
+<block wx:if="{{loading}}">
+  <template is="loading"></template>
+</block>

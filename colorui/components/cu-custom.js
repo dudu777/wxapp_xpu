@@ -45,9 +45,9 @@ Component({
         delta: 1
       });
     },
-    toSearch(){
-      wx.navigateTo({
-        url: '/pages/goods/search/search',
+    toHome(){
+      wx.reLaunch({
+        url: '/pages/index/index',
       })
     }
   }

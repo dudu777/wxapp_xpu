@@ -1,6 +1,7 @@
 /**index.wxss**/
-@import "../../colorui/animation.wxss";
-
+page {
+  padding-bottom: 260rpx
+}
 image[class*="gif-"] {
   border-radius: 6rpx;
   display: block;
@@ -13,8 +14,3 @@ image[class*="gif-"] {
   width: 100%;
   margin: 0rpx;
 }
-
-.cu-tag.badge:not([class*="bg-"]) {
-  background-color: white;
-}
-

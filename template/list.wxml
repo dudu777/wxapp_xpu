@@ -1,51 +1,90 @@
 <!--template/list/list.wxml-->
-<template name="goodsList">
+<!--闲置列表-->
+
+<template name="good-item" data="{{item}}">
+  <view style="display:inline-block" class="margin-right margin-bottom">
+    <view class="bg-white radius" style='width:335rpx;border-radius: 15rpx' bindtap='navToDetail' data-list='{{item}}'>
+    <!--主图-->
+      <image wx:if="{{item.image[0]}}" src="https://xpu.duduer.top/{{item.image[0]}}" mode="aspectFill" style="border-radius: 10rpx 10rpx 0rpx 0rpx"></image>
+      <view class="bg-blue light flex" style='border-radius: 10rpx 10rpx 0rpx 0rpx'  wx:else>
+      <image   src="/icon/no_img.png" style="width: 266rpx;height: 266rpx;margin: 10rpx auto"></image>
+      </view>
+      
+      <view class="good_name" >
+      <!--物品标签-->
+        <view class="cu-tag bg-red " wx:if="{{item.is_new == 1}}" style="width:auto">全新</view>
+        <view class="cu-tag bg-orange " wx:if="{{item.is_bargain == 1}}" style="width:auto">可讲价</view>
+        <view class="cu-tag bg-yellow " wx:if="{{item.is_free == 1}}" style="width:auto">免费赠出</view>
+        <!--物品名称-->
+        <text class="text-black">{{item.good_name}}</text>
+      </view>
+      <!--价格-->
+      <view class=" margin-lr-sm" style='color:red; padding-bottom:12rpx;'>
+        <text class="text-black text-price" style="font-size:32rpx">{{item.sell_price}}</text>
+        <text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">{{item.bid_price}}</text>
+        <!--发布时间-->
+        <text class='margin-left-sm' style="color:grey;font-size:25rpx;float:right">{{item.create_time}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+<template is="good-item" data="{{item}}"></template>
+
+
+
+<!--报失/拾遗列表-->
+
+<template name="gln-item" data="{{item}}">
+  <view style="display:inline-block" class="margin-right margin-bottom">
+    <view class="bg-white radius" style='width:335rpx;border-radius: 15rpx' bindtap='navToDetail' data-list='{{item}}'>
+      <!--主图-->
+      <image wx:if="{{item.image[0]}}" src="https://xpu.duduer.top/{{item.image[0]}}" mode="aspectFill" style="border-radius: 10rpx 10rpx 0rpx 0rpx"></image>
+      <view class="bg-blue light flex" style='border-radius: 10rpx 10rpx 0rpx 0rpx'  wx:else>
+      <image   src="/icon/no_img.png" style="width: 266rpx;height: 266rpx;margin: 10rpx auto"></image>
+      </view>
+      <!--标题-->
+      <view class="good_name" style="padding-top: 0rpx">
+        <text class="text-black">{{item.gln_name}}</text>
+      </view>
+      <view class="good_name gln_time" >
+        <text class="text-black ">{{item.gln_time}}</text>
+      </view>
+      <!--时间-->
+      <view class="text-gray " style='padding: 5rpx 10rpx 15rpx;font-size:22rpx'>
+        <text >{{item.address}}</text>
+        <text  style="float:right">{{item.create_time}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+<template is="gln-item" data="{{item}}"></template>
+
+
+
+
+<template name="glnDataList">
   <view style="display:inline-block">
-    <view class="bg-white margin-right radius  " style='margin:30rpx 0rpx 30rpx 30rpx; width:335rpx;height:450rpx' bindtap='nav_detail' data-list='{{item}}'>
-      <image src="{{item.coverImg}}" mode="aspectFill" style='height:280rpx'></image>
+    <view class="bg-white margin-right radius  " style='margin:30rpx 0rpx 30rpx 30rpx; width:335rpx;' bindtap='navToDetail' data-list='{{item}}'>
+      <image src="https://xpu.duduer.top/{{item.image[0]}}" mode="aspectFill" ></image>
       <view class="cu-bar" style='margin:0rpx 15rpx;height:25rpx'>
-        <text class="text-cut">{{item.title}}{{item.img.split(',')[0]}}</text>
+        <text class="text-cut">{{item.gln_name}}</text>
       </view>
 
-      <view class=" margin-lr-sm" style='color:red; padding-bottom:12rpx;'>￥
-        <text style="font-size:32rpx">{{item.buyPrice}}元</text>
-        <text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">{{item.cellPrice}}元</text>
+      <view class=" margin-lr-sm  flex" style='justify-content: space-between;padding-bottom:12rpx;'>
+        <text>{{item.address}}</text>
+        <text>{{item.gln_time}}</text>
       </view>
-      <view hidden='{{!isUserPublish}}' class='cu-ba text-center padding-xs bg-red ' catchtap='cancelPublish' data-goodID="{{item.goodID}}">将此下架</view>
-      <view hidden='{{!isUserTrade}}' class='cu-ba text-center padding-xs bg-yellow '>已下架</view>
-
-
-
     </view>
   </view>
 </template>
 
-<template is="goodsList" data="{{item,isUserPublish,isUserTrade}}">
-</template>
+<template is="glnDataList" data="{{item}}"></template>
 
-<template name="page_loading">
-  <view style='margin-top:400rpx;' hidden='{{loading}}'>
-    <view class="bg-gray ">
-      <image src="https://image.weilanwl.com/gif/loading-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
-    </view>
+<!--加载动画-->
+<template name="loading">
+  <view class='cu-load load-modal'>
+    <view class='cuIcon-emojiflashitem text-blue'></view>
+    <view class='gray-text'>加载中...</view>
   </view>
 </template>
-<template is="page_loading" data="{{up_loading}}"></template>
-
-<template name="up_loading">
-  <view class="margin">
-    <view class="bg-gray">
-      <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
-    </view>
-  </view>
-</template>
-<template is="up_loading" data="{{up_loading}}"></template>
-
-<template name="none_warn">
-  <view class="cu-chat" hidden='{{none_warn}}'>
-    <view class="cu-info">
-      <text class="cuIcon-warnfill text-yellow "></text> 暂无更多数据
-    </view>
-  </view>
-</template>
-<template is="none_warn" data="{{none_warn}}"></template>
+<template is="loading"></template>

@@ -1,0 +1,50 @@
+<!-- 状态栏 -->
+
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">生活帮</view>
+</cu-custom>
+<view style="position:fixed;top:{{CustomBar}}px;left:0;z-index:10;width:100%">
+<!--菜单列表-->
+<scroll-view scroll-x class="bg-white nav text-center" style="" >
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index ==TabCur?'text-blue cur':''}}" wx:for="{{tabList}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
+      {{item}}
+    </view>
+  </view>
+</scroll-view>
+</view>
+
+<scroll-view scroll-y >
+<!--闲置物品类别-->
+<view wx:if="{{TabCur ==2 }}" class="padding-sm  flex flex-wrap" style="margin-top:90rpx">
+  <view class="cu-tag {{curCate == '全部'?'bg-white':'text-black'}} padding-lr" bindtap="getAllGood">全部</view>
+  <block wx:for="{{categoryList}}" wx:key="index">
+    <view class="cu-tag  bg-{{ColorList[index]}}" wx:if="{{curCate == item.cate_name}}" data-cate="{{item.cate_name}}" bindtap="cateSele">{{item.cate_name}}</view>
+    <view class="cu-tag line-{{ColorList[index]}}" wx:else data-cate="{{item.cate_name}}" bindtap="cateSele">{{item.cate_name}}</view>
+  </block>
+</view>
+
+<!--数据列表-->
+<import src="../../../template/list.wxml" />
+<!--闲置-->
+<view class="padding-left " style="{{TabCur !=2 ? 'margin-top:110rpx':'' }} " >
+<view class="left" style="display:inline-block;verticall-align:top;width:50%">
+  <block wx:for="{{dataList}}" wx:key="index">
+    <template is="good-item" data="{{item}}" wx:if="{{TabCur==2&&index%2==0}}"></template>
+    <template is="gln-item" data="{{item}}" wx:if="{{TabCur!=2&index%2==0}}"></template>
+  </block>
+</view>
+<view class="right" style="display:inline-block;verticall-align:top;width:50%;float:right">
+  <block wx:for="{{dataList}}" wx:key="index">
+    <template is="good-item" data="{{item}}" wx:if="{{TabCur==2&index%2==1}}"></template>
+    <template is="gln-item" data="{{item}}" wx:if="{{TabCur!=2&index%2==1}}"></template>
+  </block>
+</view>
+</view>
+</scroll-view>
+
+<import src="../../../template/list.wxml" />
+<!--加载动画-->
+<block wx:if="{{loading}}">
+  <template is="loading"></template>
+</block>

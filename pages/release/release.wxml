@@ -1,0 +1,140 @@
+<!--pages/release/release.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">发布</view>
+</cu-custom>
+
+<!--闲置表单-->
+<form bindsubmit="goodFormSubmit" wx:if="{{type==2}}">
+  <view class="cu-form-group margin-top">
+    <view class="title">标题</view>
+    <textarea auto-height name="good_name"  placeholder="必填 （商品名称品牌，最多30字）" maxlength="50"></textarea>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">描述</view>
+    <textarea auto-height name="description"  placeholder="选填 （描述宝贝的用途，转手原因等）" maxlength="100"></textarea>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">类别</view>
+    <picker bindchange="PickerChange" value="{{index}}" name="category"  range="{{categoryList}}" range-key="{{'cate_name'}}">
+      <view class="picker">
+        {{sele_cate}}
+      </view>
+    </picker>
+  </view>
+  
+   <view class="cu-bar bg-white margin-top">
+    <view class="action text-black">
+      图片上传 <text class="text-gray margin-left-xs">选填 默认将第一张图片作为封面图</text>
+    </view>
+    <view class="action">
+      {{imgList.length}}/4
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">是否为全新</view>
+    <switch name="is_New"></switch>
+  </view>
+  
+  <view class="cu-form-group margin-top">
+    <view class="title">出手价</view>
+    <input placeholder="必填" class='text-red' name="sell_price" type='number' maxlength="5"></input>
+    <text class="text-red">元</text>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">买入价</view>
+    <input placeholder="选填" class='text-red' name="bid_price" type='number' maxlength="5"></input>
+    <text class="text-red">元</text>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title">是否接受讲价</view>
+    <switch name="is_bargain"></switch>
+  </view>
+
+  <view class="cu-form-group align-start margin-top">
+    <view class="title">交易地址</view>
+     <textarea auto-height name="trade_place"  placeholder="选填（如：中心广场大屏幕下）" maxlength="50"></textarea>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">联系方式</view>
+    <input placeholder="必填 (如: 手机:152xxxx2753)"  name="contact" ></input>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">是否设为仅校友可见</view>
+    <switch class="red radius sm" name="is_public"></switch>
+  </view>
+  <view class="padding flex justify-center">
+    <button class="cu-btn round bg-blue  margin-sm" style='width:400rpx' form-type="submit" >发布</button>
+  </view>
+</form>
+
+<!--报失/拾遗表单-->
+<form bindsubmit="glnFormSubmit" wx:else>
+  <view class="cu-form-group margin-top">
+    <view class="title">名称</view>
+    <textarea auto-height name="gln_name"  placeholder="必填 (物品名称品牌,最多30字）" maxlength="50"></textarea>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">描述</view>
+    <textarea maxlength="100" auto-height name="description" placeholder="选填 （描述物品的外形，颜色等)"></textarea>
+  </view>
+   <view class="cu-bar bg-white margin-top">
+    <view class="action text-black">
+      图片上传 <text class="text-gray margin-left-xs text-sm">选填 默认将第一张图片作为封面图</text>
+    </view>
+    <view class="action">
+      {{imgList.length}}/4
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">{{type == 0 ? "报失":"拾遗"}}时间</view>
+    <input placeholder="选填（请具体到年月日）" name="gln_name"></input>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">{{type == 0 ? "报失":"拾遗"}}地址</view>
+    <textarea name="address" auto-height placeholder="选填（如：中心广场大屏幕下）"></textarea>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">联系方式</view>
+    <input placeholder="必填 (如: 手机:152xxxx2753)"  name="contact" ></input>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title">是否设为仅校友可见</view>
+    <switch class="red radius sm" name="is_public"></switch>
+  </view>
+  <view class="padding flex justify-center">
+    <button class="cu-btn round bg-blue  margin-sm" style='width:400rpx' form-type="submit" >发布</button>
+  </view>
+</form>
+
+<!--发布成功-->
+<view class='cu-load load-modal' wx:if="{{release_sucess}}">
+  <view class='cuIcon-emojifill text-blue'></view>
+  <view class='gray-text'>发布成功</view>
+</view>

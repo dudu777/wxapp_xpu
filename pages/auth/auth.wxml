@@ -1,0 +1,72 @@
+<!--pages/auth/auth.wxml-->
+<!--pages/user/user_auth/user_auth.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">校友认证</view>
+</cu-custom>
+
+<!--认证表单-->
+<form bindsubmit="formSubmit" wx:if="{{auth==0}}">
+  <view class="cu-form-group margin-top">
+    <view class="title">姓名</view>
+    <textarea auto-height name="alm_name" placeholder="请填写您的真实姓名" maxlength="50"></textarea>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">学号</view>
+    <textarea auto-height name="number" placeholder="请填写您的学号" maxlength="100"></textarea>
+  </view>
+  <view class="cu-form-group align-start margin-top">
+    <view class="title">学院</view>
+    <textarea auto-height name="faculty" placeholder="如 电子信息学院" maxlength="100"></textarea>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">班级</view>
+    <textarea auto-height name="major" placeholder="如 通信工程1班" maxlength="100"></textarea>
+  </view>
+  <view class="padding flex justify-center">
+    <button class="cu-btn round bg-blue  margin-sm" style='width:400rpx' form-type="submit">提交</button>
+  </view>
+  <view class='padding-xl margin-lg'>
+    <view class="text-center text-sm">实名认证信息提交后不可修改，请确保信息正确无误！</view>
+  </view>
+</form>
+
+<!--认证信息-->
+<form bindsubmit="formSubmit" wx:else>
+  <view class="cu-form-group margin-top ">
+    <view class="title ">姓名</view>
+    <input  value="{{authInfo.alm_name}}" disabled ></input>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title ">学号</view>
+    <input  value="{{authInfo.number}}" disabled ></input>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title ">学院</view>
+    <input value="{{authInfo.faculty}}" disabled ></input>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title ">班级</view>
+    <input value="{{authInfo.major}}" disabled ></input>
+  </view>
+  <view class="cu-form-group margin-top">
+    <view class="title ">认证时间</view>
+    <input value="{{authInfo.create_time}}" disabled ></input>
+  </view>
+  <view class='padding-xl margin-lg'>
+    <view class="text-center text-sm ">若想修改认证信息，请在个人中心联系客服人员！</view>
+  </view>
+
+</form>
+
+
+<!--加载动画-->
+<import src="../../template/list.wxml" />
+<block wx:if="{{loading}}">
+  <template is="loading"></template>
+</block>
+<!--认证成功-->
+<view class='cu-load load-modal' wx:if="{{auth_sucess}}">
+  <view class='cuIcon-profilefill text-blue'></view>
+  <view class='gray-text'>认证成功</view>
+</view>

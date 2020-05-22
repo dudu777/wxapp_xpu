@@ -1,24 +1,36 @@
-
-
 <!-- 组件显示 -->
 <view hidden="{{currentTab == 0? false: true}}">
-  <component_goods id="goods" style="padding-bottom:260rpx"/>
+  <component_home id="home" />
 </view>
 <view hidden="{{currentTab == 1? false: true}}">
-  <component_my id="my"/>
+  <component_user id="user" />
 </view>
+<!--底部操作条-->
 <view class="cu-bar tabbar margin-bottom-xl bg-white tabbar-bottom ">
+  <!--两个data-current="0" 解决图标和按钮都触发swichNav方法-->
   <view class="action {{currentTab == 0?'text-blue':'text-gray'}}" data-current="0" bindtap="swichNav">
-    <view class="cuIcon-home" data-current="0"></view>首页
+    <view class="{{currentTab == 0?'cuIcon-homefill':'cuIcon-home'}}" data-current="0"></view>首页
   </view>
-  <view class="action add-action text-blue" style='width:200rpx'  data-current="2" bindtap="swichNav">
-    <button class="cu-btn cuIcon-add bg-gradual-blue shandow"  ></button>
-    发布
-  </view>
-  <view class="action {{currentTab == 1?'text-blue':'text-gray'}}" data-current="1" bindtap="swichNav">
-    <view class="cuIcon-my" data-current="1">
-      <view class="cu-tag  badge"></view>
+    <view class="action add-action text-blue" style='width:200rpx' bindtap="showTypeModel">
+      <button class="cu-btn cuIcon-add bg-gradual-blue shandow"></button>
+      发布
     </view>
-    我的
+  <view class="action {{currentTab == 1?'text-blue':'text-gray'}}" data-current="1" bindtap="swichNav">
+    <view class="{{currentTab == 1?'cuIcon-myfill':'cuIcon-my'}}" data-current="1"> </view>
+    个人中心
   </view>
 </view>
+<!--选择发布类 弹框-->
+  <view class="cu-modal bottom-modal {{modalName=='typeModel'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-list grid col-3">
+      <block wx:for="{{tabList}}" wx:key="index">
+        <view class="padding-xl" data-type="{{index}}" bindtap="navToRelease">
+            <image mode="heightFix" src="{{item.icon}}" style="display: block;margin: 5rpx auto;height:80rpx"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+      <button class="cu-btn bg-gray round " bindtap="hideModal" style="width: 65%;margin: auto;margin-bottom: 20rpx">取消</button>
+</view>
+</view>
+    </view>

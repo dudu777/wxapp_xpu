@@ -1,19 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/goods/publish/publish",
-    "pages/goods/publish/ch_contact/ch_contact",
-    "pages/component/my/my",
-    "pages/goods/good_detail/good_detail",
-    "pages/goods/search/search",
-    "pages/user/user_auth/user_auth",
-    "pages/user/user_auth/form/form",
-    "pages/user/user_auth/info/info",
-    "pages/user/user_trade/user_trade",
-    "pages/user/user_favor/user_favor",
-    "pages/user/user_about/user_about",
-    "pages/user/user_publish/user_publish"
-  ],
+    "pages/release/release",
+    "pages/auth/auth",
+    "pages/good_detail/detail",
+    "pages/about/about"
+      ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

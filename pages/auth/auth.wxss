@@ -1,0 +1,7 @@
+/* pages/auth/auth.wxss */
+.cu-load.load-modal::after {
+  width:0rpx;
+  height:0rpx;
+  border-style: none;
+
+}

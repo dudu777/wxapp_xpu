@@ -842,7 +842,7 @@ button.icon.lg {
 }
 
 .cu-tag+.cu-tag {
-	margin-left: 10rpx;
+	margin-left: 20rpx;
 }
 
 .cu-tag.sm {
@@ -1153,7 +1153,7 @@ button.icon.lg {
 	border-top: 6rpx solid rgba(0, 0, 0, 0.05);
 	border-right: 6rpx solid rgba(0, 0, 0, 0.05);
 	border-bottom: 6rpx solid rgba(0, 0, 0, 0.05);
-	border-left: 6rpx solid var(--orange);
+	border-left: 6rpx solid var(--blue);
 	animation: cuIcon-spin 1s infinite linear;
 	z-index: -1;
 }
@@ -1444,9 +1444,9 @@ button.icon.lg {
 .cu-list.menu>.cu-item .action .cu-tag:empty {
 	right: 10rpx
 }
-/**del: display: block;*/
+
 .cu-list.menu {
-	
+	display: block;
 	overflow: hidden
 }
 
@@ -1536,13 +1536,13 @@ button.icon.lg {
 /* ==================
           操作条
  ==================== */
-/**del：justify-content: space-between; */
+
 .cu-bar {
 	display: flex;
 	position: relative;
 	align-items: center;
 	min-height: 100rpx;
-  
+	justify-content: space-between;
 }
 
 .cu-bar .action {
@@ -2228,13 +2228,13 @@ button.icon.lg {
 	display: block;
 	overflow: hidden;
 }
-/**del:margin: 30rpx;*/
+
 .cu-card>.cu-item {
 	display: block;
 	background-color: var(--white);
 	overflow: hidden;
 	border-radius: 10rpx;
-	
+	margin: 30rpx;
 }
 
 .cu-card>.cu-item.shadow-blur {
@@ -3823,13 +3823,11 @@ scroll-view.cu-steps .cu-item {
 	font-size: 80%;
 	margin-right: 4rpx;
 }
-/**del:white-space: nowrap;*/
+
 .text-cut {
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	overflow: hidden;
-  text-overflow:ellipsis;
-  display:-webkit-box; 
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2; 
 }
 
 .text-bold {

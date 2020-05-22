@@ -1,9 +1,0 @@
-/* @import "../../../colorui/animation.wxss"; */
-page{
-  padding-bottom: 100rpx
-}
-
-/* image[class*="gif-"] {
-  border-radius: 6rpx;
-  display: block;
-} */

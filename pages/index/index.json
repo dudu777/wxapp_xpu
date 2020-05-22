@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "component_goods": "/pages/component/goods/goods",
-    "component_my": "/pages/component/my/my"
+    "component_home": "/pages/component/home/home",
+    "component_user": "/pages/component/user/user"
   }
 }
