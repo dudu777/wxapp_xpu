@@ -1,0 +1,151 @@
+<!--pages/user_rele/user_rele.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="true">
+  <view slot="backText">返回</view>
+  <view slot="content">我的发布</view>
+</cu-custom>
+
+<!--类型选择-->
+<view class="nav " style="display:flex;position: fixed;z-index: 10000;width: 100%;" class="bg-white">
+  <view class="cu-capsule round bg-white padding-tb-sm" style="margin:auto">
+    <block wx:for="{{typeList}}" wx:key="index">
+      <view class="cu-tag-top {{curType == item.type ?'bg-blue text-white': 'text-black line-blue'}}" data-type="{{item.type}}" bindtap="updateCurType">
+        {{item.name}}
+      </view>
+    </block>
+  </view>
+</view>
+<!--数据列表-->
+<view style="padding-top:95rpx">
+  <block wx:for="{{dataList}}" wx:key="index">
+  <!--闲置物品信息 -->
+  <view class="cu-list menu-avatar solids-bottom bg-white " style="width: 93%;margin:15rpx auto;border-radius: 20rpx;" bindtap="navToDetail" data-data="{{item}}" wx:if="{{curType ==2}}">
+    <view class="cu-item padding " style='height:180rpx;background:white'>
+      <!--图片-->
+      <image class="cu-avatar bg-white radius xl" wx:if="{{item.image[0]}}" src="https://xpu.duduer.top/{{item.image[0]}}" mode="aspectFitl" style="width:128rpx;height:128rpx;"></image>
+      <image class="cu-avatar bg-white radius xl" src="/icon/no_img.png" style="width: 128rpx;height: 128rpx;" wx:else></image>
+
+      <!--名称 -->
+      <view class="content margin-lr" style='width:370rpx;line-height:60rpx;'>
+        <view class="text-cut margin-bottom">{{item.good_name}}</view>
+        <!--标签-->
+        <view class="flex bg-white solid-bottom justify-start">
+          <view class="cu-tag bg-red light" style="width:auto">全新</view>
+          <view class="cu-tag bg-orange light" style="width:auto">可讲价</view>
+          <view class="cu-tag bg-yellow light" style="width:auto">免费赠出</view>
+          <block wx:if="{{item.tag}}" wx:for="{{dataList.tag}}" wx:key="index" wx:index="tag">
+            <view class="cu-tag  light bg-{{ColorList[index]}}" style="width:auto">{{tag}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="action " style='width:300rpx;text-align:right;margin-right:20rpx;'>
+        <view>
+          <text class="text-price text-red text-xxl">{{item.sell_price}}</text>
+        </view>
+        <view>
+          <text class=" text-grey text-xl">{{item.bid_price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex bg-white text-sm padding-lr padding-bottom-sm justify-between" style=''>
+      <text class="text-gray " style="line-height:2.5em">创建时间：{{item.create_time}}</text>
+      <view>
+        <button class="cu-btn bg-yellow round" catchtap="cancelGood" data-goodid="{{item.good_id}}" style="float:right;width: 185rpx;height: 50rpx;" wx:if="{{item.status == 1}}">取消发布</button>
+        <!--取消失效-->
+        <button class="cu-btn  bg-blue round"  catchtap="releaseGood" data-goodid="{{item.good_id}}" style="float:right;width: 175rpx;height: 50rpx;" wx:else>重新发布</button> 
+      </view>
+    </view>
+  </view>
+
+
+
+<!--报失物品信息 -->
+  <view class="cu-list menu-avatar solids-bottom bg-white " style="width: 93%;margin:15rpx auto;border-radius: 20rpx;" bindtap="navToDetail" data-data="{{item}}" wx:if="{{curType == item.type}}">
+    <view class="cu-item padding " style='height:180rpx;background:white'>
+      <!--图片-->
+      <image class="cu-avatar bg-white radius xl" wx:if="{{item.image[0]}}" src="https://xpu.duduer.top/{{item.image[0]}}" mode="aspectFitl" style="width:128rpx;height:128rpx;"></image>
+      <image class="cu-avatar bg-white radius xl" src="/icon/no_img.png" style="width: 128rpx;height: 128rpx;" wx:else></image>
+
+      <!--名称 -->
+      <view class="content margin-lr" style='line-height:60rpx;width:70%'>
+        <view class="text-cut margin-bottom">{{item.gln_name}}</view>
+        <!--标签-->
+        <view class="flex bg-white solid-bottom justify-start">
+          <view class="cu-tag bg-red light" style="width:auto">{{item.address}}</view>
+          <view class="cu-tag bg-red light" style="width:auto">{{item.gln_time}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex bg-white text-sm padding-lr padding-bottom-sm justify-between" style=''>
+      <text class="text-gray " style="line-height:2.5em">创建时间：{{item.create_time}}</text>
+      <view>
+        <button class="cu-btn bg-yellow round" catchtap="cancelGln" data-glnid="{{item.gln_id}}" style="float:right;width: 185rpx;height: 50rpx;" wx:if="{{item.status == 1}}">取消发布</button>
+        <!--取消失效-->
+        <button class="cu-btn  bg-blue round"  catchtap="releaseGln" data-glnid="{{item.gln_id}}" style="float:right;width: 175rpx;height: 50rpx;" wx:else>重新发布</button> 
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </block>
+</view>
+
+
+<!--加载动画-->
+<import src="../../template/list.wxml" />
+<block wx:if="{{loading}}">
+  <template is="loading"></template>
+</block>
+
+
+<!-- 查看大图
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  <view class="cu-dialog" style="top:50rpx">
+    <view class="bg-img" style="height:500rpx;">
+      <image src="{{imagePre}}" mode="aspectFit" style="width:630rpx;height:500rpx;margin:auto"></image>
+      <view class="cu-bar justify-end text-white">
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close "></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <button class="cu-btn  bg-red" form-type="submit" style='width:500rpx;margin:0 auto;' bindtap="hideModal">返回</button>
+    </view>
+  </view>
+</view>
+
+<!--暂无记录-->
+<!-- <view class="noGood" hidden="{{orderNo}}">
+  <image class="" src="/icon/order-null.png" mode="widthFix" style="height:auto"></image>
+</view>
+<view class="noGood-text text-lg margin-top" hidden="{{orderNo}}" style="">
+  <text>暂无订单</text>
+</view> -->
+
+
+
+
+
+
+
+
+
+<!-- 
+<import src="../../../template/list.wxml" />
+<block wx:for="{{goodsList}}" wx:key="index">
+  <template is="goodsList" data="{{item ,isUserPublish,isUserTrade}}">
+  </template>
+</block> -->

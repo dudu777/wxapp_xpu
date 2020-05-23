@@ -25,7 +25,7 @@
   
    <view class="cu-bar bg-white margin-top">
     <view class="action text-black">
-      图片上传 <text class="text-gray margin-left-xs">选填 默认将第一张图片作为封面图</text>
+      图片上传 <text class="text-gray margin-left-xs text-sm">选填 默认将第一张图片作为封面图</text>
     </view>
     <view class="action">
       {{imgList.length}}/4

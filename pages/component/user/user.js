@@ -92,7 +92,13 @@ Component({
       }
       
     },
-    
+    navToUser_rele(e){
+      console.log(e)
+      wx.navigateTo({
+        url: '/pages/user_rele/user_rele?type='+e.currentTarget.dataset.type,
+      })
+
+    },
     hideModal(e) {
       this.setData({
         modalName: null
@@ -115,26 +121,26 @@ Component({
               success: res => {
                 console.log('applogin')
                 if (res.code) {
-                  // 发起网络请求
-                  wx.request({
-                    url: 'http://localhost:5000/login',
-                    data: {
-                      js_code: res.code,
-                    },
-                    method: "post",
-                    success: res => {
-                      wx.setStorage({
-                        key: 'user',
-                        data: res.data.data,
-                      })
-                    }
+                  base.postRq('/login', { js_code: res.code }).then(res => {
+                    
+                    wx.setStorage({
+                      key: 'user',
+                      data: res.data.data,
+                    })
+                    wx.hideLoading()
+                    wx.showToast({
+                      title: '清除成功',
+                    })
+
                   })
+
                 } else {
                   console.log('登录失败！' + res.errMsg)
+                  wx.hideLoading()
                 }
               }
-
             })
+            
           } else if (res.cancel) {
 
           }

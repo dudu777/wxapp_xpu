@@ -1,6 +1,6 @@
 // pages/release/release.js
 var base = require("../../utils/base.js")
-var dateToString = require('../../utils/util.js');
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -92,21 +92,47 @@ Page({
   // 提交闲置表单
   goodFormSubmit(e) {
     let form = e.detail.value
-    let that = this
-    form["category"] = this.data.categoryList[form.category].cate_name;
-    form["user_id"] = this.data.user_id
-    form['create_time'] = dateToString(new Date())
-    console.log('闲置表单数据为：', form)
-    // 判断是否上传图片
-    if(that.data.imgList.length > 0){
-      base.uploadImg(that.data.imgList).then(function (res) {
-        console.log('上传图片返回',res)
-        form["image"] = res
-        that.addGood(form)
+    console.log(form)
+    if (form.good_name ==""){
+      wx.showToast({
+        title: '请填写商品标题',
+        icon:'none'
       })
-    }else{
-      that.addGood(form)
+    } else if (form.category == null){
+      wx.showToast({
+        title: '请选择商品类别',
+        icon:'none'
+      })
+
+    } else if (form.sell_price == ''){
+      wx.showToast({
+        title: '请填写商品出手价',
+        icon: 'none'
+      })
+    } else if (form.contact == '') {
+      wx.showToast({
+        title: '请填写您的联系方式',
+        icon: 'none'
+      })
+    }else{// 校验通过
+      let that = this
+      form["category"] = this.data.categoryList[form.category].cate_name;
+      form["user_id"] = this.data.user_id
+      form['create_time'] = util.dateToString(new Date())
+      console.log('闲置表单数据为：', form)
+      // 判断是否上传图片
+      if (that.data.imgList.length > 0) {
+        base.uploadImg(that.data.imgList).then(function (res) {
+          console.log('上传图片返回', res)
+          form["image"] = res
+          that.addGood(form)
+        })
+      } else {
+        that.addGood(form)
+      }
+
     }
+    
   },
   // 请求发布闲置接口
   addGood(form){
@@ -129,11 +155,25 @@ Page({
   // 提交报失/拾遗表单
   glnFormSubmit(e) {
     let form = e.detail.value
+    if (form.gln_name == "") {
+      wx.showToast({
+        title: '请填写物品名称',
+        icon: 'none'
+      })
+    }  else if (form.contact == '') {
+      wx.showToast({
+        title: '请填写您的联系方式',
+        icon: 'none'
+      })
+    } else {// 校验通过
+
+    }
+    console.log(form)
     let that = this
     console.log('报失/拾遗表单数据为：', form)
     form['type'] = that.data.type
     form["user_id"] = that.data.user_id
-    form['create_time'] = dateToString(new Date())
+    form['create_time'] = util.dateToString(new Date())
     // 判断是否上传图片
     if (that.data.imgList.length > 0) {
       base.uploadImg(that.data.imgList).then(function (res) {
@@ -147,15 +187,18 @@ Page({
   },
   // 请求报失/拾遗闲置接口
   addGleaning(form) {
+    let that = this
     // 闲置发布接口
-    base.postRq('/gleaning', para).then(function (res) {
+    base.postRq('/gleaning', form).then(function (res) {
       console.log('闲置/拾遗发布接口', res)
-      wx.showToast({
-        title: '发布成功'
-      })
-      wx.navigateTo({
-        url: '/pages/index/index',
-      })
+      setTimeout(function () {
+        that.setData({
+          release_sucess: true
+        })
+        wx.navigateBack({
+
+        })
+      }, 1000)
     })
   },
   

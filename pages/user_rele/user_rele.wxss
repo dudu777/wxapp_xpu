@@ -1,0 +1,66 @@
+/* pages/user_rele/user_rele.wxss */
+/* pages/user/order/order.wxss */
+
+page {
+  padding-bottom: 150rpx;
+}
+
+.nav {
+  position: fixed;
+  z-index: 10000;
+  width: 100%
+}
+
+.delivery {
+  font-size: 20rpx;
+  padding: 4rpx;
+  height: 45rpx;
+  position: relative;
+  left: 10rpx;
+  width: 113rpx;
+  bottom: 2rpx;
+  border-radius: 7rpx;
+}
+
+.noGood {
+  width: 100%;
+  display: flex;
+  height: auto;
+  margin-top: 300rpx;
+}
+
+.noGood image {
+  width: 250rpx;
+  height: 250rpx;
+  margin: auto;
+}
+
+.noGood-text {
+  display: flex;
+  color: #707070;
+}
+
+.noGood-text text {
+  margin: auto;
+}
+
+.cu-tag-top {
+  font-size: 28rpx;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0rpx 10rpx;
+  height: 50rpx;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  white-space: nowrap;
+  border-radius: 30rpx;
+  width: 165rpx;
+  z-index: 1000;
+}
+.cu-tag {
+  font-size: 22rpx;
+padding: 0rpx 10rpx;
+height: 40rpx;
+}

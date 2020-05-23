@@ -150,12 +150,11 @@ Component({
    
     navToDetail(e) {
       var list = e.currentTarget.dataset.list
-      if(this.data.tab_id == 2){
+      if (this.data.tab_id == 2  && list.tag){
         list = list.tag.split('*')
       }
       
       list['tab_id'] = this.data.TabCur
-      console.log(list)
       wx.navigateTo({
         url: '/pages/good_detail/detail?data=' + JSON.stringify(list),
       })

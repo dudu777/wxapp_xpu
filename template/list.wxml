@@ -36,7 +36,7 @@
 
 <template name="gln-item" data="{{item}}">
   <view style="display:inline-block" class="margin-right margin-bottom">
-    <view class="bg-white radius" style='width:335rpx;border-radius: 15rpx' bindtap='navToDetail' data-list='{{item}}'>
+    <view class="bg-white radius " style='width:335rpx;border-radius: 15rpx' bindtap='navToDetail' data-list='{{item}}'>
       <!--主图-->
       <image wx:if="{{item.image[0]}}" src="https://xpu.duduer.top/{{item.image[0]}}" mode="aspectFill" style="border-radius: 10rpx 10rpx 0rpx 0rpx"></image>
       <view class="bg-blue light flex" style='border-radius: 10rpx 10rpx 0rpx 0rpx'  wx:else>
@@ -46,12 +46,12 @@
       <view class="good_name" style="padding-top: 0rpx">
         <text class="text-black">{{item.gln_name}}</text>
       </view>
-      <view class="good_name gln_time" >
+      <view class="good_name gln_time" wx:if="{{item.gln_time}}" >
         <text class="text-black ">{{item.gln_time}}</text>
       </view>
       <!--时间-->
-      <view class="text-gray " style='padding: 5rpx 10rpx 15rpx;font-size:22rpx'>
-        <text >{{item.address}}</text>
+      <view class="text-gray " style='padding: 5rpx 10rpx 15rpx;font-size:22rpx;height: 45rpx'>
+        <text wx:if="{{item.address}}">{{item.address}}</text>
         <text  style="float:right">{{item.create_time}}</text>
       </view>
     </view>

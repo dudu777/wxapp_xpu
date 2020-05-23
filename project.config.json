@@ -25,7 +25,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.11.0",
 	"appid": "wx6dcff2f0f1a73aeb",
-	"projectname": "%E7%94%9F%E6%B4%BB%E5%B8%AE",
+	"projectname": "%E6%AF%95%E8%AE%BE_%E7%94%9F%E6%B4%BB%E5%B8%AE",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -88,6 +88,14 @@
 					"id": -1,
 					"name": "商品详情",
 					"pathName": "pages/good_detail/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "我的发布",
+					"pathName": "pages/user_rele/user_rele",
+					"query": "type=0",
 					"scene": null
 				}
 			]

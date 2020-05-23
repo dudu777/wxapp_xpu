@@ -4,7 +4,10 @@
     "pages/release/release",
     "pages/auth/auth",
     "pages/good_detail/detail",
-    "pages/about/about"
+
+    "pages/about/about",
+    "pages/user_rele/user_rele",
+    "pages/user_rele/detail"
       ],
   "window": {
     "backgroundTextStyle": "light",

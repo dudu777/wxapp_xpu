@@ -1,5 +1,4 @@
-<!--pages/good_detail/detail.wxml-->
-<!--pages/publish/publish.wxml-->
+<!--pages/user_rele/detail.wxml-->
 <cu-custom bgColor="bg-gradual-blue" isBack="true">
   <view slot="backText">返回</view>
   <view slot="content">{{tab_id == 2 ?'闲置' : tab_id==1 ?'拾遗':'报失' }}物品详情</view>
@@ -10,13 +9,13 @@
   <!--闲置-->
   <!--顶部轮播图-->
   <swiper wx:if="{{goodInfo.image[0]}}" class="screen-swiper bg-white square-dot" circular="true" autoplay="true" interval="5000" duration="500" style="height:{{imgHeight[current]}}rpx;" bindchange="swp_bindchange">
-    <block  wx:for="{{goodInfo.image}}" wx:key="index">
+    <block wx:for="{{goodInfo.image}}" wx:key="index">
       <swiper-item>
         <image src="https://xpu.duduer.top/{{item}}" class="slide-image" mode='aspectFill' bindload="imageLoad" data-id="{{index}}" />
       </swiper-item>
     </block>
   </swiper>
-  <view wx:else class="bg-white  padding">卖家没有提供物品图片，具体细节请联系卖家！</view>
+  <view wx:else class="padding">您没有提供物品图片！</view>
 
   <!--商品名称-->
   <view class="bg-white text-left margin-top padding good-name">
@@ -28,9 +27,10 @@
   <view class="bg-white text-xl padding-lg">
     <text class="text-price text-red text-xxl ">{{goodInfo.sell_price}}   </text>
     <text class="text-xl text-price  text-gray margin-left-xxl" style='text-decoration: line-through'>{{goodInfo.bid_price}}</text>
-     <text class=" text-gray padding-lr-dr text-xs"style="float:right">{{goodInfo_create_time}} 发布</text>
+    <text class=" text-gray padding-lr-dr text-xs" style="float:right">{{goodInfo.create_time}} 发布</text>
   </view>
   <!--商品标签-->
+
   <view class="bg-white action padding">
     <view class="cu-tag bg-red " wx:if="{{goodInfo.is_new == 1}}" style="width:auto">全新</view>
     <view class="cu-tag bg-orange " wx:if="{{goodInfo.is_bargain == 1}}" style="width:auto">可讲价</view>
@@ -43,25 +43,32 @@
   <!--商品描述-->
   <view class=" padding-tb-xs  text-left" style="background:#fffbef">
     <view class="padding-sm padding-left-lg solid-bottom">
-     <text> {{goodInfo.description}}</text>
-    </view>
-    <view class="padding text-sm flex align-center">
-      商品具体细节和交易请于卖家联系。
-     
+      <text> {{goodInfo.description}}</text>
     </view>
   </view>
   <!--联系方式-->
-  <view class="cu-form-group margin-top">
-    <view class="title">卖家联系方式</view>
-    <view class="margin-tb-sm text-center" data-contact="{{goodInfo.contact}}" bindtap='getContact'>
-      <button class="cu-btn round bg-blue 'shadow'">查看</button>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-blue"></text>
+      <text>联系方式</text>
     </view>
   </view>
-  
+  <view class="bg-white text-leftmargin-top padding good-name">
+    <view class="action text-bold text-lg text-black">
+      {{goodInfo.contact}}
+    </view>
+  </view>
+  <!--操作-->
+<view class="margin-top padding-bottom" style="display:flex">
+  <button class="cu-btn bg-yellow round" catchtap="cancelGood" data-goodid="{{goodInfo.good_id}}" style="width: 300rpx;height: 76rpx;margin: 0 auto" wx:if="{{goodInfo.status == 1}}">取消发布</button>
+        <!--取消失效-->
+        <button class="cu-btn  bg-blue round"  catchtap="releaseGood" data-goodid="{{goodInfo.good_id}}" style="width: 300rpx;height: 76rpx;margin: 0 auto" wx:else>重新发布</button> 
+</view>
 </view>
 <view wx:else>
   <!--报失/拾遗-->
   <!--顶部轮播图-->
+
   <swiper class="screen-swiper bg-white square-dot" circular="true" autoplay="true" interval="5000" duration="500" style="height:{{imgHeight[current]}}rpx;" bindchange="swp_bindchange">
     <block wx:for="{{glnInfo.image}}" wx:key="index">
       <swiper-item>
@@ -78,40 +85,27 @@
 
   <!--商品描述-->
   <view class=" padding-tb-xs  text-left" style="background:#fffbef">
-    
     <view class=" text-gray padding-sm padding-left-lg solid-bottom">
       <text class="">{{glnInfo.type === 0?'遗失时间：':'拾遗时间：'}}{{glnInfo.gln_time}} </text>
       <text class="text-df text-gray padding-lr-dr" style='float:right'>{{glnInfo.type === 0?'遗失地点：':'拾遗地点：'}} {{glnInfo.address}}</text>
     </view>
-
-
-    <view class="padding-lg text-sm text-gray flex align-center">
-      物品具体细节请于{{glnInfo.type==0?"失主":"拾主"}}联系。
-    </view>
   </view>
   <!--联系方式-->
-  <view class="cu-form-group margin-top">
-    <view class="title">{{glnInfo.type === 0?"失主":'拾主'}}联系方式</view>
-    <view class="margin-tb-sm text-center" data-contact="{{glnInfo.contact}}" bindtap='getContact'>
-      <button class="cu-btn round bg-blue 'shadow'" >查看</button>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-blue"></text>
+      <text>联系方式</text>
     </view>
   </view>
+  <view class="bg-white text-leftmargin-top padding good-name">
+    <view class="action text-bold text-lg text-black">
+      {{glnInfo.contact}}
+    </view>
+  </view>
+  <!--操作-->
+<view class="margin-top padding-bottom" style="display:flex">
+  <button class="cu-btn bg-yellow round" catchtap="cancelGln" data-glnid="{{glnInfo.gln_id}}" style="width: 300rpx;height: 76rpx;margin: 0 auto" wx:if="{{glnInfo.status == 1}}">取消发布</button>
+        <!--取消失效-->
+        <button class="cu-btn  bg-blue round"  catchtap="releaseGln" data-glnid="{{glnInfo.gln_id}}" style="width: 300rpx;height: 76rpx;margin: 0 auto" wx:else>重新发布</button> 
 </view>
-
-<!--联系方式弹框-->
-<view class="cu-modal {{modalName=='contactModal'?'show':''}}">
-    <view class="cu-dialog  bg-white ">
-      <view class="cu-bar bg-white justify-end">
-        <view class="content">联系卖家</view>
-        <view class="action" bindtap="hideModal">
-          <text class="cuIcon-close text-blue"></text>
-        </view>
-      </view>
-      <view class="padding">
-        {{goodInfo.contact}}
-      </view>
-      <view class="padding" hidden="{{!is_copy}}">
-        <text class='cuIcon-emojifill text-blue'></text> 已为您复制联系方式
-      </view>
-    </view>
-  </view>
+</view>
