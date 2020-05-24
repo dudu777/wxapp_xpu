@@ -67,7 +67,7 @@ Page({
     return {
       title: '生活帮',
       desc: '为西安工程大学校友提供生活便利！',
-      path: 'pages/index/index',
+      path: '/pages/index/index',
       success: function (res) {
         // 转发成功
       },

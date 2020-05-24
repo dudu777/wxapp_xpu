@@ -16,6 +16,7 @@ Page({
     imgHeight: [], //所有图片的高度  
     imgwidth: 750,//图片宽度
 current: 0,// 轮播图当前播放的id
+shareData:null,// 分享页面携带的参数
 
   },
 
@@ -31,12 +32,14 @@ that.setData({
 })
     if(that.data.tab_id == 2){
       that.setData({
-        goodInfo: JSON.parse(options.data)
+        goodInfo: JSON.parse(options.data),
+        shareData: options.data
       })
 
     }else{
       that.setData({
-        glnInfo: JSON.parse(options.data)
+        glnInfo: JSON.parse(options.data),
+        shareData:options.data
       })
      
 
@@ -160,6 +163,16 @@ that.setData({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return{
+    title: '生活帮',
+      desc: '为西工程大的校友提供生活便利',
+        path: '/pages/good_detail/detail?data=' + this.data.shareData,
+          success: function (res) {
+            // 转发成功
+          },
+    fail: function (res) {
+      // 转发失败
+    }
+    }
   }
 })

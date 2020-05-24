@@ -1,6 +1,5 @@
 <!--pages/good_detail/detail.wxml-->
-<!--pages/publish/publish.wxml-->
-<cu-custom bgColor="bg-gradual-blue" isBack="true">
+<cu-custom bgColor="bg-gradual-blue" isCustom="{{true}}">
   <view slot="backText">返回</view>
   <view slot="content">{{tab_id == 2 ?'闲置' : tab_id==1 ?'拾遗':'报失' }}物品详情</view>
 </cu-custom>

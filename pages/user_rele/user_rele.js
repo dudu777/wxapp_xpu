@@ -246,7 +246,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
-  }
+  onShareAppMessage: function () {
+    return {
+      title: '生活帮',
+      desc: '为西安工程大学校友提供生活便利！',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
 })
