@@ -92,7 +92,6 @@ Page({
   // 提交闲置表单
   goodFormSubmit(e) {
     let form = e.detail.value
-    console.log(form)
     if (form.good_name ==""){
       wx.showToast({
         title: '请填写商品标题',

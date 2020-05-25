@@ -1,0 +1,16 @@
+/* pages/feedback/feedback.wxss */
+.text{
+  width: 90%;
+background: #fff;
+margin: 20rpx auto;
+border-radius: 20rpx;
+height: 600rpx;
+padding: 20rpx;
+
+}
+.cu-load.load-modal::after {
+  width:0rpx;
+  height:0rpx;
+  border-style: none;
+
+}

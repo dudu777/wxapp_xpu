@@ -1,5 +1,5 @@
 // let baseUrl  = 'http://localhost:5000'
-let baseUrl = 'https://xpu.duduer.top'
+ let baseUrl = 'https://xpu.duduer.top'
 function postRq (url,data){
   return new Promise((resolve,reject) =>{
     wx.request({

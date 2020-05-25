@@ -1,0 +1,22 @@
+<!--pages/feedback/feedback.wxml-->
+<cu-custom bgColor="bg-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">意见反馈</view>
+</cu-custom>
+
+<form bindsubmit="formSubmit">
+
+  <view class="padding text">
+    <textarea maxlength="-1" name="article" placeholder="请详细描述您的问题"></textarea>
+  </view>
+  <view class="cu-bar justify-center">
+    <button class="cu-btn  bg-blue" form-type="submit" style='width:400rpx;height:80rpx'>提交</button>
+    </view>
+
+</form>
+
+<!--发布成功-->
+<view class='cu-load load-modal' wx:if="{{sub_success}}">
+  <view class='cuIcon-emojifill text-blue'></view>
+  <view class='gray-text'>感谢反馈</view>
+</view>

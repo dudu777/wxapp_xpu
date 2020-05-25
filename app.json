@@ -4,6 +4,7 @@
     "pages/release/release",
     "pages/auth/auth",
     "pages/good_detail/detail",
+    "pages/feedback/feedback",
 
     "pages/about/about",
     "pages/user_rele/user_rele",
