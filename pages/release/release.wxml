@@ -114,7 +114,7 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">{{type == 0 ? "报失":"拾遗"}}时间</view>
-    <input placeholder="选填（请具体到年月日）" name="gln_name"></input>
+    <input placeholder="选填（请具体到年月日）" name="gln_time"></input>
   </view>
   <view class="cu-form-group align-start">
     <view class="title">{{type == 0 ? "报失":"拾遗"}}地址</view>

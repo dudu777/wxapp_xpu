@@ -190,6 +190,7 @@ Page({
     // 闲置发布接口
     base.postRq('/gleaning', form).then(function (res) {
       console.log('闲置/拾遗发布接口', res)
+    
       setTimeout(function () {
         that.setData({
           release_sucess: true

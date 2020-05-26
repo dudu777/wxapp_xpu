@@ -64,7 +64,7 @@
   <swiper class="screen-swiper bg-white square-dot" circular="true" autoplay="true" interval="5000" duration="500" style="height:{{imgHeight[current]}}rpx;" bindchange="swp_bindchange">
     <block wx:for="{{glnInfo.image}}" wx:key="index">
       <swiper-item>
-        <image src="http://localhost:5000/{{item}}" class="slide-image" mode='aspectFill' bindload="imageLoad" data-id="{{index}}" />
+        <image src="https://xpu.duduer.top/{{item}}" class="slide-image" mode='aspectFill' bindload="imageLoad" data-id="{{index}}" />
       </swiper-item>
     </block>
   </swiper>
@@ -101,13 +101,16 @@
 <view class="cu-modal {{modalName=='contactModal'?'show':''}}">
     <view class="cu-dialog  bg-white ">
       <view class="cu-bar bg-white justify-end">
-        <view class="content">联系卖家</view>
+        <view class="content">联系方式</view>
         <view class="action" bindtap="hideModal">
           <text class="cuIcon-close text-blue"></text>
         </view>
       </view>
-      <view class="padding">
+      <view class="padding" wx:if="{{goodInfo.contact}}">
         {{goodInfo.contact}}
+      </view>
+      <view class="padding" wx:if="{{glnInfo.contact}}">
+        {{glnInfo.contact}}
       </view>
       <view class="padding" hidden="{{!is_copy}}">
         <text class='cuIcon-emojifill text-blue'></text> 已为您复制联系方式

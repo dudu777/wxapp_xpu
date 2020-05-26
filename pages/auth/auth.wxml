@@ -21,7 +21,7 @@
   </view>
   <view class="cu-form-group align-start">
     <view class="title">班级</view>
-    <textarea auto-height name="major" placeholder="如 通信工程1班" maxlength="100"></textarea>
+    <textarea auto-height name="major" placeholder="如 通信工程1601班" maxlength="100"></textarea>
   </view>
   <view class="padding flex justify-center">
     <button class="cu-btn round bg-blue  margin-sm" style='width:400rpx' form-type="submit">提交</button>

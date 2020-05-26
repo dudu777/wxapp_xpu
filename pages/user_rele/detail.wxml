@@ -72,7 +72,7 @@
   <swiper class="screen-swiper bg-white square-dot" circular="true" autoplay="true" interval="5000" duration="500" style="height:{{imgHeight[current]}}rpx;" bindchange="swp_bindchange">
     <block wx:for="{{glnInfo.image}}" wx:key="index">
       <swiper-item>
-        <image src="http://localhost:5000/{{item}}" class="slide-image" mode='aspectFill' bindload="imageLoad" data-id="{{index}}" />
+        <image src="https://xpu.duduer.top/{{item}}" class="slide-image" mode='aspectFill' bindload="imageLoad" data-id="{{index}}" />
       </swiper-item>
     </block>
   </swiper>

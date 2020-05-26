@@ -53,33 +53,60 @@ Page({
   formSubmit(e) {
     let form = e.detail.value
     let that = this
-    that.setData({
-      loading:true
-    })
-    form["user_id"] = this.data.user_id
-    form['create_time'] = util.dateToString(new Date())
-    console.log('闲置表单数据为：', form)
-    base.postRq('/alumni',form).then(res => {
-      console.log('校友认证返回',res)
-      wx.setStorage({
-        key: 'user',
-        data: { user_id: this.data.user_id,auth:1},
+    console.log(form)
+    if (form.alm_name == "") {
+      wx.showToast({
+        title: '请填写您的姓名',
+        icon: 'none'
+      })
+    } else if (form.number == "") {
+      wx.showToast({
+        title: '请填写您的学号',
+        icon: 'none'
       })
 
-      that.setData({
-        loading: false,
-        auth_sucess:true
+    } else if (form.faculty == '') {
+      wx.showToast({
+        title: '请填写您的学院',
+        icon: 'none'
       })
-      setTimeout(function(){
+    } else if (form.major == '') {
+      wx.showToast({
+        title: '请填写您的班级',
+        icon: 'none'
+      })
+    } else {// 校验通过
+      that.setData({
+        loading: true
+      })
+      form["user_id"] = this.data.user_id
+      form['create_time'] = util.dateToString(new Date())
+      console.log('闲置表单数据为：', form)
+      base.postRq('/alumni', form).then(res => {
+        console.log('校友认证返回', res)
+        wx.setStorage({
+          key: 'user',
+          data: { user_id: this.data.user_id, auth: 1 },
+        })
+
         that.setData({
-          auth_sucess: false
+          loading: false,
+          auth_sucess: true
         })
-        wx.navigateBack({
-          
-        })
-      },1000)
-      
-    })
+        setTimeout(function () {
+          that.setData({
+            auth_sucess: false
+          })
+          wx.navigateBack({
+
+          })
+        }, 1000)
+
+      })
+
+
+    }
+    
   },
 
   /**

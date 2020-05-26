@@ -55,8 +55,8 @@ function uploadImg(imgList) {
 
     for(let i =0;i<length;i++){
       wx.uploadFile({
-        // url: 'https://xpu.duduer.top/upload',
-        url: 'http://localhost:5000/upload',
+         url:baseUrl+'/upload',
+        
         filePath: imgList[i],
         name: 'file',
         formData: {

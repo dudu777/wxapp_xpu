@@ -185,6 +185,9 @@ Page({
   updateGlnStatu(gln_id, statu) {
     let that = this
     base.putRq('/glnstatu/' + gln_id, { status: statu }).then(res => {
+      wx.showToast({
+        title: '操作成功！',
+      })
       that.getGlnList()
     })
   },
