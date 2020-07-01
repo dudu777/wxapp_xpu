@@ -20,10 +20,10 @@
       </view>
       <!--价格-->
       <view class=" margin-lr-sm" style='color:red; padding-bottom:12rpx;'>
-        <text class="text-black text-price" style="font-size:32rpx">{{item.sell_price}}</text>
-        <text class='margin-left-sm' style="color:grey;font-size:28rpx;text-decoration:line-through">{{item.bid_price}}</text>
+        <text class="text-black text-price" style="font-size:30rpx">{{item.sell_price}}</text>
+        <text class='' style="margin-left:4rpx;color:grey;font-size:20rpx;text-decoration:line-through">{{item.bid_price}}</text>
         <!--发布时间-->
-        <text class='margin-left-sm' style="color:grey;font-size:25rpx;float:right">{{item.create_time}}</text>
+        <text class='' style="color:grey;font-size:20rpx;float:right;line-height:46rpx">{{item.create_time}}</text>
       </view>
     </view>
   </view>

@@ -4,7 +4,6 @@
   <view slot="content">{{tab_id == 2 ?'闲置' : tab_id==1 ?'拾遗':'报失' }}物品详情</view>
 </cu-custom>
 
-
 <view wx:if="{{tab_id == 2}}">
   <!--闲置-->
   <!--顶部轮播图-->
@@ -27,7 +26,7 @@
   <view class="bg-white text-xl padding-lg">
     <text class="text-price text-red text-xxl ">{{goodInfo.sell_price}}   </text>
     <text class="text-xl text-price  text-gray margin-left-xxl" style='text-decoration: line-through'>{{goodInfo.bid_price}}</text>
-     <text class=" text-gray padding-lr-dr text-xs"style="float:right">{{goodInfo_create_time}} 发布</text>
+     <text class=" text-gray padding-lr-dr text-xs"style="float:right">{{goodInfo.create_time}} 发布</text>
   </view>
   <!--商品标签-->
   <view class="bg-white action padding">

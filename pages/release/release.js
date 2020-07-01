@@ -13,6 +13,7 @@ Page({
     sele_cate: '必填 请选择商品类别',
     user_id:null,
     release_sucess:false,// 发布成功
+    btn_disabled:false,
     
   },
 
@@ -119,11 +120,15 @@ Page({
       form["user_id"] = this.data.user_id
       form['create_time'] = util.dateToString(new Date())
       console.log('闲置表单数据为：', form)
+      that.setData({
+        btn_disabled: true
+      })
       // 判断是否上传图片
       if (that.data.imgList.length > 0) {
         base.uploadImg(that.data.imgList).then(function (res) {
           console.log('上传图片返回', res)
           form["image"] = res
+          
           that.addGood(form)
         })
       } else {
@@ -139,10 +144,11 @@ Page({
     // 闲置发布接口
     base.postRq('/good', form).then(function (res) {
       console.log('闲置发布接口',res)
-      setTimeout(function () {
-        that.setData({
+      that.setData({
           release_sucess: true
         })
+      setTimeout(function () {
+        
         wx.navigateBack({
 
         })
@@ -165,24 +171,25 @@ Page({
         icon: 'none'
       })
     } else {// 校验通过
+      console.log(form)
+      let that = this
+      console.log('报失/拾遗表单数据为：', form)
+      form['type'] = that.data.type
+      form["user_id"] = that.data.user_id
+      form['create_time'] = util.dateToString(new Date())
+      // 判断是否上传图片
+      if (that.data.imgList.length > 0) {
+        base.uploadImg(that.data.imgList).then(function (res) {
+          console.log('上传图片返回', res)
+          form["image"] = res
+          that.addGleaning(form)
+        })
+      } else {
+        that.addGleaning(form)
+      }
 
     }
-    console.log(form)
-    let that = this
-    console.log('报失/拾遗表单数据为：', form)
-    form['type'] = that.data.type
-    form["user_id"] = that.data.user_id
-    form['create_time'] = util.dateToString(new Date())
-    // 判断是否上传图片
-    if (that.data.imgList.length > 0) {
-      base.uploadImg(that.data.imgList).then(function (res) {
-        console.log('上传图片返回', res)
-        form["image"] = res
-        that.addGleaning(form)
-      })
-    } else {
-      that.addGleaning(form)
-    }
+    
   },
   // 请求报失/拾遗闲置接口
   addGleaning(form) {
@@ -191,10 +198,11 @@ Page({
     base.postRq('/gleaning', form).then(function (res) {
       console.log('闲置/拾遗发布接口', res)
     
+      that.setData({
+        release_sucess: true
+      })
       setTimeout(function () {
-        that.setData({
-          release_sucess: true
-        })
+
         wx.navigateBack({
 
         })

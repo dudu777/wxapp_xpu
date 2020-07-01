@@ -77,7 +77,7 @@
     <switch class="red radius sm" name="is_public"></switch>
   </view>
   <view class="padding flex justify-center">
-    <button class="cu-btn round bg-blue  margin-sm" style='width:400rpx' form-type="submit" >发布</button>
+    <button class="cu-btn round bg-blue  margin-sm" style='width:400rpx' form-type="submit" disabled="{{btn_disabled}}">{{btn_disabled?'发布中':'发布'}}</button>
   </view>
 </form>
 

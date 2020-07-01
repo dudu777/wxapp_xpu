@@ -6,7 +6,7 @@ page{
 
 
 .good_name{
-  height: 78rpx;
+  max-height: 85rpx;
   padding: 10rpx;
 overflow: hidden;
 text-overflow: ellipsis;
